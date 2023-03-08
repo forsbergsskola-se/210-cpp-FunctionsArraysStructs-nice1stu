@@ -81,7 +81,7 @@ struct EmployeeInfo
 {
     string firstName;
     string lastName;
-    int personnummer;
+    long long personnummer;
     int phoneNumber;
     int dateOfEmployment;
     char gender[256];
@@ -100,7 +100,7 @@ void FillInEmployeeArray(EmployeeInfo arr[], int size)
         cin >> arr[i].firstName;
         cout << "Last Name: " << endl;
         cin >> arr[i].lastName;
-        cout << "Personnummer: AAMMDDxxxx" << endl;
+        cout << "Personnummer: AAAAMMDDxxxx" << endl;
         cin >> arr[i].personnummer;
         cout << "Phone Number: " << endl;
         cin >> arr[i].phoneNumber;
