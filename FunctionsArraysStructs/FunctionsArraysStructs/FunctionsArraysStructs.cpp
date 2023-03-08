@@ -169,8 +169,11 @@ struct Vector
     }
 };
 
-//Swap function
-
+void SwapPointerValues(int* pointer1, int* pointer2) {
+    int temp = *pointer1;
+    *pointer1 = *pointer2;
+    *pointer2 = temp;
+}
 
 
 int main()
@@ -197,10 +200,10 @@ int main()
     getUserInput(number, 9);
 
     //Employee Info
-    //const int numEmployees = 2;
-    //EmployeeInfo employees[numEmployees];
-    //FillInEmployeeArray(employees, numEmployees);
-    //printEmployeeData(employees, numEmployees);
+    const int numEmployees = 2;
+    EmployeeInfo employees[numEmployees];
+    FillInEmployeeArray(employees, numEmployees);
+    printEmployeeData(employees, numEmployees);
 
     //Swap values behind both pointers
     int four = 4;
@@ -211,7 +214,7 @@ int main()
     printf("This is pointer five: %d\n", pFive);
 
     printf("This is four: %d, This is five: %d\n", four, five);
-    // invoke swap function here passing pointers to five and four.
+    SwapPointerValues(pFour, pFive);
     printf("This used to be four: %d, This used to be five: %d\n", four, five);
 
     return 0;
