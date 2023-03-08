@@ -5,6 +5,28 @@
 
 using namespace std;
 
+//Fibonacci
+//fn = fn-1 + fn-2
+
+int fibonacciIterative(int n)
+{
+    int i, fnOne = 0, fnTwo = 1, fnThree;
+    if (n == 0) return fnOne;
+    for (i = 2; i <= n; ++i)
+    {
+        fnThree = fnOne + fnTwo;
+        fnOne = fnTwo;
+        fnTwo = fnThree;
+    }
+    return fnTwo;
+}
+
+
+
+
+
+
+//Vector Addition
 struct Vector
 {
     int x, y;
@@ -39,6 +61,7 @@ struct Vector
 
 int main()
 {
+    //vector
     cout << "Vector2D\n";
     Vector v1(3, 2);
     Vector v2(-1, -2);
@@ -46,5 +69,9 @@ int main()
     Vector result = v1 + v2;
     cout << "Result: ";
     result.print();
+
+    //fibonacciIterative
+
+
     return 0;
 }
