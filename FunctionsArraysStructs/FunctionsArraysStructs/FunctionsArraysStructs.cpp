@@ -42,7 +42,7 @@ int main()
     cout << "Vector2D\n";
     Vector v1(3, 2);
     Vector v2(-1, -2);
-    cout << "Adding " << v1.print() << " and " << v2.print() "..." << endl;
+    cout << "Adding " << v1.print() << " and " << v2.print() << "..." << endl;
     Vector result = v1 + v2;
     cout << "Result: ";
     result.print();
