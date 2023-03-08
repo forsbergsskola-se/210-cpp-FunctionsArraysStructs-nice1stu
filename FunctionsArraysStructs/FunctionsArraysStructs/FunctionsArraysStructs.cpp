@@ -71,7 +71,9 @@ int main()
     result.print();
 
     //fibonacciIterative
-
+    int n = 10;
+    cout << "Iterative Fibonacci to " << n << " is " << fibonacciIterative(n);
+    
 
     return 0;
 }
