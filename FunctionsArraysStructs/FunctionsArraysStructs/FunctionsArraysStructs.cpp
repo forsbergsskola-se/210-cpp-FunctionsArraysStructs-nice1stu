@@ -78,15 +78,15 @@ void getUserInput(int numArray[], int numArraySize)
 
 struct EmployeeInfo
 {
-    char firstName[256];
-    char lastName[256];
+    string firstName;
+    string lastName;
     int personnummer;
     int phoneNumber;
     int dateOfEmployment;
     char gender[256];
     int addressStreetNo;
-    char addressStreet[256];
-    char addressCity[256];
+    string addressStreet;
+    string addressCity;
 };
 
 
