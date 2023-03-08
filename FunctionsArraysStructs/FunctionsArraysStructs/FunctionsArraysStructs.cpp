@@ -76,7 +76,6 @@ void getUserInput(int numArray[], int numArraySize)
 }
 
 //EmployeeStruct
-
 struct EmployeeInfo
 {
     string firstName;
@@ -137,8 +136,6 @@ void printEmployeeData(EmployeeInfo employees[], int numEmployees)
     }
 }
 
-
-
 //Vector Addition
 struct Vector
 {
@@ -172,6 +169,10 @@ struct Vector
     }
 };
 
+//Swap function
+
+
+
 int main()
 {
     //vector
@@ -201,6 +202,14 @@ int main()
     FillInEmployeeArray(employees, numEmployees);
     printEmployeeData(employees, numEmployees);
 
+    //Swap values behind both pointers
+    int four = 4;
+    int* pFour = &four;
+    int five = 5;
+    int* pFive = &five;
+    printf("This is four: %d, This is five: %d", four, five);
+    // invoke swap function here passing pointers to five and four.
+    printf("This used to be four: %d, This used to be five: %d", four, five);
 
     return 0;
 }
