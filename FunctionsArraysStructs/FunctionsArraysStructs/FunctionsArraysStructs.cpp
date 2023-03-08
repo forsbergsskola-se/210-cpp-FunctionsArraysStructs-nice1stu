@@ -38,6 +38,40 @@ void getUserInput(int numArray[], int numArraySize)
     }
     cout << "Total: " << total << endl;
     cout << "Average: " << (total / numArraySize) << endl;
+
+    //bubble sort array
+    for (size_t i = 0; i < numArraySize - 1; ++i)
+    {
+        for (size_t j = 0; j < numArraySize - i - 1; ++j)
+        {
+            if (numArray[j] > numArray[j + 1])
+            {
+                // Swap numArray[j] and numArray[j+1]
+                int temp = numArray[j];
+                numArray[j] = numArray[j + 1];
+                numArray[j + 1] = temp;
+            }
+        }
+    }
+
+    cout << "Sorted array: ";
+    for (size_t i = 0; i < numArraySize; ++i)
+    {
+        cout << numArray[i] << " ";
+    }
+    cout << endl;
+
+    double median;
+    if (numArraySize % 2 == 0)
+    {
+        median = (numArray[numArraySize / 2 - 1] + numArray[numArraySize / 2]) / 2.0;
+    }
+    else
+    {
+        median = numArray[numArraySize / 2];
+    }
+
+    cout << "Median: " << median << endl;
 }
 
 
