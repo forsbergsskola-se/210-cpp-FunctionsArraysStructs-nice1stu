@@ -74,7 +74,20 @@ void getUserInput(int numArray[], int numArraySize)
     cout << "Median: " << median << endl;
 }
 
+//EmployeeStruct
 
+struct EmployeeInfo
+{
+    char firstName[256];
+    char lastName[256];
+    int personnummer;
+    int phoneNumber;
+    int dateOfEmployment;
+    char gender[256];
+    int addressStreetNo;
+    char addressStreet[256];
+    char addressCity[256];
+};
 
 
 //Vector Addition
