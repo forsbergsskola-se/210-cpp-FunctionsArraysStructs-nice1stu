@@ -47,15 +47,14 @@ void getUserInput(int numArray[], int numArraySize)
         {
             if (numArray[j] > numArray[j + 1])
             {
-                // Swap numArray[j] and numArray[j+1]
                 int temp = numArray[j];
                 numArray[j] = numArray[j + 1];
                 numArray[j + 1] = temp;
             }
         }
     }
-
     cout << "Sorted array: ";
+
     for (size_t i = 0; i < numArraySize; ++i)
     {
         cout << numArray[i] << " ";
@@ -169,7 +168,9 @@ struct Vector
     }
 };
 
-void SwapPointerValues(int* pointer1, int* pointer2) {
+//Swap Pointer Values
+void SwapPointerValues(int* pointer1, int* pointer2)
+{
     int temp = *pointer1;
     *pointer1 = *pointer2;
     *pointer2 = temp;
