@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -89,6 +90,54 @@ struct EmployeeInfo
     string addressCity;
 };
 
+//store the info in an array
+void FillInEmployeeArray(EmployeeInfo arr[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        cout << "Enter data for employee " << i + 1 << endl;
+        cout << "First Name: " << endl;
+        cin >> arr[i].firstName;
+        cout << "Last Name: " << endl;
+        cin >> arr[i].lastName;
+        cout << "Personnummer: AAMMDDxxxx" << endl;
+        cin >> arr[i].personnummer;
+        cout << "Phone Number: " << endl;
+        cin >> arr[i].phoneNumber;
+        cout << "Date of Employment: AAAAMMDD" << endl;
+        cin >> arr[i].dateOfEmployment;
+        cout << "Gender: M/F/L/G/B/T/Q" << endl;
+        cin >> arr[i].gender;
+        cout << "Address Street No.: " << endl;
+        cin >> arr[i].addressStreetNo;
+        cout << "Address Street: " << endl;
+        cin >> arr[i].addressStreet;
+        cout << "Address City: " << endl;
+        cin >> arr[i].addressCity;
+        cout << endl;
+    }
+}
+
+//print employee data
+void printEmployeeData(EmployeeInfo employees[], int numEmployees)
+{
+    for (int i = 0; i < numEmployees; i++)
+    {
+        cout << "Employee #" << i + 1 << " data:" << endl;
+        cout << "First name: " << employees[i].firstName << endl;
+        cout << "Last name: " << employees[i].lastName << endl;
+        cout << "Personnummer: " << employees[i].personnummer << endl;
+        cout << "Phone number: " << employees[i].phoneNumber << endl;
+        cout << "Date of employment: " << employees[i].dateOfEmployment << endl;
+        cout << "Gender: " << employees[i].gender << endl;
+        cout << "Street number: " << employees[i].addressStreetNo << endl;
+        cout << "Street name: " << employees[i].addressStreet << endl;
+        cout << "City: " << employees[i].addressCity << endl;
+        cout << endl;
+    }
+}
+
+
 
 //Vector Addition
 struct Vector
@@ -145,6 +194,13 @@ int main()
     //ArrayAverage
     int number[9];
     getUserInput(number, 9);
+
+    //Employee Info
+    const int numEmployees = 2;
+    EmployeeInfo employees[numEmployees];
+    FillInEmployeeArray(employees, numEmployees);
+    printEmployeeData(employees, numEmployees);
+
 
     return 0;
 }
