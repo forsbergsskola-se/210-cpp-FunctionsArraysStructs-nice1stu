@@ -21,7 +21,11 @@ int fibonacciIterative(int n)
     return fnTwo;
 }
 
-
+int fibonacciRecursive(int r)
+{
+    if (r <= 1) return r;
+    return fibonacciRecursive(r - 1) + fibonacciRecursive(r - 2);
+}
 
 
 
@@ -72,7 +76,11 @@ int main()
 
     //fibonacciIterative
     int n = 10;
-    cout << "Iterative Fibonacci to " << n << " is " << fibonacciIterative(n);
+    cout << "Iterative Fibonacci to " << n << " is " << fibonacciIterative(n) << endl;
+
+    //fibonacciRecursive
+    int r = 3;
+    cout << "Recursive fibonacci of " << r << " is " << fibonacciRecursive(r) << endl;
     
 
     return 0;
