@@ -74,6 +74,14 @@ void getUserInput(int numArray[], int numArraySize)
     cout << "Median: " << median << endl;
 }
 
+//Address struct (employee struct)
+struct Address
+{
+    int addressStreetNo;
+    string addressStreet;
+    string addressCity;
+};
+
 //EmployeeStruct
 struct EmployeeInfo
 {
@@ -83,9 +91,7 @@ struct EmployeeInfo
     int phoneNumber;
     int dateOfEmployment;
     char gender[256];
-    int addressStreetNo;
-    string addressStreet;
-    string addressCity;
+    Address address;
 };
 
 //store the info in an array
@@ -107,11 +113,11 @@ void FillInEmployeeArray(EmployeeInfo arr[], int size)
         cout << "Gender: M/F/L/G/B/T/Q" << endl;
         cin >> arr[i].gender;
         cout << "Address Street No.: " << endl;
-        cin >> arr[i].addressStreetNo;
+        cin >> arr[i].address.addressStreetNo;
         cout << "Address Street: " << endl;
-        cin >> arr[i].addressStreet;
+        cin >> arr[i].address.addressStreet;
         cout << "Address City: " << endl;
-        cin >> arr[i].addressCity;
+        cin >> arr[i].address.addressCity;
         cout << endl;
     }
 }
@@ -128,9 +134,9 @@ void printEmployeeData(EmployeeInfo employees[], int numEmployees)
         cout << "Phone number: " << employees[i].phoneNumber << endl;
         cout << "Date of employment: " << employees[i].dateOfEmployment << endl;
         cout << "Gender: " << employees[i].gender << endl;
-        cout << "Street number: " << employees[i].addressStreetNo << endl;
-        cout << "Street name: " << employees[i].addressStreet << endl;
-        cout << "City: " << employees[i].addressCity << endl;
+        cout << "Street number: " << employees[i].address.addressStreetNo << endl;
+        cout << "Street name: " << employees[i].address.addressStreet << endl;
+        cout << "City: " << employees[i].address.addressCity << endl;
         cout << endl;
     }
 }
