@@ -4,17 +4,22 @@
 #include <string>
 #include <thread>
 #include <cmath>
+#include <Windows.h>
+
 
 using namespace std;
 
 // declare & initialize
 char gameBoard[3][3];
-char playerSymbol[3] = { 'X', 'O', 'Ö' };
-string playerName[4]; // store player names
+char playerSymbol[2] = { 'X', 'O' };
+string playerName[2]; // store player names
 int numPlayers;
 int currentPlayer = 1;
 int playerChoiceX = 0;
 int playerChoiceY = 0;
+int BOARD_SIZE = 3;
+bool gameOver = false;
+
 
 // function prototypes
 void SetUp();
@@ -22,10 +27,8 @@ void LetsPlay();
 void DrawBoard();
 void PlayerTurn();
 void BaymaxTurn();
-void NumKeyInput();
 void CheckWin();
 void CheckDraw();
-void HasWon();
 
 // main function
 int main() {
@@ -33,31 +36,30 @@ int main() {
     return 0;
 }
 
-// Lets Play
-void LetsPlay() {
-GameOn:
-    if (numPlayers == 2) {
-        currentPlayer = (currentPlayer + 1) % 2;
-        PlayerTurn();
-    }
-    else {
-        currentPlayer = (currentPlayer + 1) % 2;
-        if (currentPlayer == 0) {
+void LetsPlay()
+{
+    while (!gameOver)
+    {
+        if (numPlayers == 2)
+        {
+            currentPlayer = (currentPlayer + 1) % 2;
             PlayerTurn();
         }
-        else {
-            BaymaxTurn();
+        else
+        {
+            currentPlayer = (currentPlayer + 1) % 2;
+            if (currentPlayer == 0) PlayerTurn();
+            else BaymaxTurn();
         }
+        DrawBoard();
+        CheckWin();
+        CheckDraw();
     }
-
-    DrawBoard();
-    CheckWin();
-    CheckDraw();
-    goto GameOn;
 }
 
 // Setup Game
-void SetUp() {
+void SetUp()
+{
     // reset gameBoard array values
     gameBoard[0][0] = '1'; gameBoard[1][0] = '2'; gameBoard[2][0] = '3';
     gameBoard[0][1] = '4'; gameBoard[1][1] = '5'; gameBoard[2][1] = '6';
@@ -71,7 +73,8 @@ Player2Play:
     cout << "Please enter the number of player 1 or 2" << endl;
     string userInput;
     cin >> userInput;
-    if ((userInput != "1") && (userInput != "2")) {
+    if ((userInput != "1") && (userInput != "2"))
+    {
         cout << "Invalid input." << endl;
         goto Player2Play;
     }
@@ -79,7 +82,8 @@ Player2Play:
     numPlayers = (int)fmin((double)numPlayers, 2);
     if (numPlayers == 2) {
         // Players enter name
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; i++)
+        {
             cout << "Player " << i + 1 << ", please enter your name" << endl;
             string playerAnswer;
             cin >> playerAnswer;
@@ -89,7 +93,8 @@ Player2Play:
         DrawBoard();
         LetsPlay();
     }
-    else {
+    else
+    {
         cout << "Player 1, please enter your name" << endl;
         string playerAnswer;
         cin >> playerAnswer;
@@ -105,7 +110,7 @@ Player2Play:
 
 void DrawBoard()
 {
-    system("clear"); // Clear the console (works in Linux/MacOS)
+    //system("cls"); // Clear the console
 
     // Set the color of the text to green
     std::cout << "\033[32m";
@@ -122,6 +127,16 @@ void DrawBoard()
     std::cout << "\033[0m";
 }
 
+void NumKeyInput()
+{
+    cout << "Player " << playerName[currentPlayer] << ", enter the number of the cell you want to play: " << endl;
+    int playerInput;
+    cin >> playerInput;
+    playerInput--;
+    playerChoiceX = playerInput % BOARD_SIZE;
+    playerChoiceY = playerInput / BOARD_SIZE;
+}
+
 void PlayerTurn()
 {
 PlayerInput:
@@ -134,99 +149,56 @@ PlayerInput:
     gameBoard[playerChoiceX][playerChoiceY] = playerSymbol[currentPlayer];
 }
 
-
-//check win
-void CheckWin()
-{
-    if (gameBoard[0][0] == gameBoard[1][0] && gameBoard[1][0] == gameBoard[2][0]) //row 1-3
-    {
-        HasWon();
-    }
-
-    if (gameBoard[0][1] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][1]) //row 4-6
-    {
-        HasWon();
-    }
-
-    if (gameBoard[0][2] == gameBoard[1][2] && gameBoard[1][2] == gameBoard[2][2]) //row 7-9
-    {
-        HasWon();
-    }
-
-    if (gameBoard[0][0] == gameBoard[0][1] && gameBoard[0][1] == gameBoard[0][2]) //column 1-7
-    {
-        HasWon();
-    }
-
-    if (gameBoard[1][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[1][2]) //column 2-8
-    {
-        HasWon();
-    }
-
-    if (gameBoard[2][0] == gameBoard[2][1] && gameBoard[2][1] == gameBoard[2][2]) //column 3-9
-    {
-        HasWon();
-    }
-
-    if (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2]) //Diagonal 0-9
-    {
-        HasWon();
-    }
-
-    if (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0]) //Diagonal 3-7
-    {
-        HasWon();
-    }
-}
-
-
-//Has won
 void HasWon()
 {
-    cout << playerName[currentPlayer] << " Wins !" << endl;
-    PlayAgain();
+    DrawBoard();
+    cout << "Player " << playerName[currentPlayer] << " has won!" << endl;
+    gameOver = true;
 }
 
-//check draw
-void CheckDraw()
+void CheckWin()
 {
-    if (gameBoard[0][0] != '1' && gameBoard[1][0] != '2' && gameBoard[2][0] != '3' && gameBoard[0][1] != '4' && gameBoard[1][1] != '5' && gameBoard[2][1] != '6' && gameBoard[0][2] != '7' && gameBoard[1][2] != '8' && gameBoard[2][2] != '9')
-    {
-        HasDrawn();
+    // check rows
+    for (int i = 0; i < 3; i++) {
+        if (gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2]) {
+            HasWon();
+            return;
+        }
+    }
+
+    // check columns
+    for (int i = 0; i < 3; i++) {
+        if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i]) {
+            HasWon();
+            return;
+        }
+    }
+
+    // check diagonals
+    if (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2]) {
+        HasWon();
+        return;
+    }
+    if (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0]) {
+        HasWon();
+        return;
     }
 }
 
-//Has drawn
-void HasDrawn()
-{
-    cout << "Game is a draw" << endl;
-    PlayAgain();
-}
-
-
-//Play Again
-void PlayAgain()
-{
-Back2Game:
-    cout << "Would you like to play again?" << endl;
-    cout << "[1] for YES : [2] for NO" << endl;
-    string userInput;
-    getline(cin, userInput);
-    if ((userInput != "1") && (userInput != "2"))
-    {
-        cout << "Invalid input." << endl;
-        goto Back2Game;
+void CheckDraw() {
+    bool emptyFound = false;
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            if (gameBoard[i][j] != 'X' && gameBoard[i][j] != 'O') {
+                emptyFound = true;
+                break;
+            }
+        }
     }
-    int playAgain = stoi(userInput);
-    if (playAgain == 1)
-    {
-        system("cls");
-        SetUp();
-    }
-    else
-    {
-        system("cls");
-        EndGame();
+    if (!emptyFound) {
+        DrawBoard();
+        cout << "The game is a draw." << endl;
+        gameOver = true;
     }
 }
 
@@ -237,72 +209,92 @@ void EndGame()
     exit(0);
 }
 
-
-//Use number key for input
-void NumKeyInput()
+void PlayAgain()
 {
-    cout << playerName[currentPlayer] << " press the NumKey where you want to play" << endl;
-    string playerInput;
-    cin >> playerInput;
-    if (playerInput == "1")
+    while (true)
     {
-        playerChoiceX = 0;
-        playerChoiceY = 0;
-    }
-    if (playerInput == "2")
-    {
-        playerChoiceX = 1;
-        playerChoiceY = 0;
-    }
-    if (playerInput == "3")
-    {
-        playerChoiceX = 2;
-        playerChoiceY = 0;
-    }
-    if (playerInput == "4")
-    {
-        playerChoiceX = 0;
-        playerChoiceY = 1;
-    }
-    if (playerInput == "5")
-    {
-        playerChoiceX = 1;
-        playerChoiceY = 1;
-    }
-    if (playerInput == "6")
-    {
-        playerChoiceX = 2;
-        playerChoiceY = 1;
-    }
-    if (playerInput == "7")
-    {
-        playerChoiceX = 0;
-        playerChoiceY = 2;
-    }
-    if (playerInput == "8")
-    {
-        playerChoiceX = 1;
-        playerChoiceY = 2;
-    }
-    if (playerInput == "9")
-    {
-        playerChoiceX = 2;
-        playerChoiceY = 2;
+        cout << "Would you like to play again?" << endl;
+        cout << "[1] for YES : [2] for NO" << endl;
+
+        string userInput;
+        getline(cin, userInput);
+
+        if (userInput != "1" && userInput != "2")
+        {
+            cout << "Invalid input." << endl;
+        }
+        else
+        {
+            int playAgain = stoi(userInput);
+            if (playAgain == 1)
+            {
+                system("cls");
+                SetUp();
+            }
+            else
+            {
+                system("cls");
+                EndGame();
+            }
+            break;
+        }
     }
 }
 
-//Single Player Methods
-void BaymaxTurn()
+
+// Single Player Methods
+// Generate a random number between 0 and max-1
+int GenerateRandomNumber(int max)
 {
     srand(time(NULL));
-PlayerInput:
-    playerChoiceX = rand() % 3;
-    playerChoiceY = rand() % 3;
-    if (gameBoard[playerChoiceX][playerChoiceY] == playerSymbol[0] || gameBoard[playerChoiceX][playerChoiceY] == playerSymbol[2])
+    return rand() % max;
+}
+
+// Get a valid move from the player
+void GetPlayerMove()
+{
+    while (true)
     {
-        goto PlayerInput;
+        // Prompt the player for input
+        cout << "Enter your move (1-9): ";
+        string input;
+        getline(cin, input);
+
+        // Validate the input
+        if (input.size() != 1 || input[0] < '1' || input[0] > '9')
+        {
+            cout << "Invalid input. Please enter a number between 1 and 9." << endl;
+            continue;
+        }
+
+        // Convert the input to coordinates on the game board
+        int position = input[0] - '1';
+        playerChoiceX = position % BOARD_SIZE;
+        playerChoiceY = position / BOARD_SIZE;
+
+        // Check if the chosen position is available
+        if (gameBoard[playerChoiceX][playerChoiceY] != ' ')
+        {
+            cout << "That position is already occupied. Please choose a different position." << endl;
+            continue;
+        }
+
+        // The move is valid, so exit the loop
+        break;
     }
-    cout << "Baymax plays " << gameBoard[playerChoiceX][playerChoiceY] << endl;
-    gameBoard[playerChoiceX][playerChoiceY] = playerSymbol[2];
+}
+
+// Let Baymax make a move
+void BaymaxTurn()
+{
+    int x, y;
+    do
+    {
+        x = GenerateRandomNumber(BOARD_SIZE);
+        y = GenerateRandomNumber(BOARD_SIZE);
+    } while (gameBoard[x][y] != ' ');
+
+    gameBoard[x][y] = playerSymbol[1];
+    cout << "Baymax plays " << gameBoard[x][y] << endl;
     Sleep(2000);
 }
