@@ -28,7 +28,7 @@ int fibonacciRecursive(int r)
 }
 
 //ArrayAverage
-void getUserInput(int numArray[], int numArraySize)
+void getUserInput(int numArray[], size_t numArraySize)
 {
     int total = 0;
     for (size_t i = 0; i < numArraySize; ++i)

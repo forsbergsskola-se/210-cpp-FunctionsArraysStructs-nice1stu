@@ -31,8 +31,10 @@ void CheckWin();
 void CheckDraw();
 
 // main function
-int main() {
+int main()
+{
     SetUp();
+    LetsPlay();
     return 0;
 }
 
@@ -69,7 +71,7 @@ void SetUp()
     cout << "     - by Stewart Wan -" << endl;
 
     // Number of players
-Player2Play:
+    Player2Play:
     cout << "Please enter the number of player 1 or 2" << endl;
     string userInput;
     cin >> userInput;
@@ -80,7 +82,8 @@ Player2Play:
     }
     numPlayers = stoi(userInput);
     numPlayers = (int)fmin((double)numPlayers, 2);
-    if (numPlayers == 2) {
+    if (numPlayers == 2)
+    {
         // Players enter name
         for (int i = 0; i < 2; i++)
         {
@@ -110,7 +113,7 @@ Player2Play:
 
 void DrawBoard()
 {
-    //system("cls"); // Clear the console
+    system("cls"); // Clear the console
 
     // Set the color of the text to green
     std::cout << "\033[32m";
@@ -160,7 +163,8 @@ void CheckWin()
 {
     // check rows
     for (int i = 0; i < 3; i++) {
-        if (gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2]) {
+        if (gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2])
+        {
             HasWon();
             return;
         }
@@ -168,7 +172,8 @@ void CheckWin()
 
     // check columns
     for (int i = 0; i < 3; i++) {
-        if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i]) {
+        if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i])
+        {
             HasWon();
             return;
         }
@@ -187,15 +192,19 @@ void CheckWin()
 
 void CheckDraw() {
     bool emptyFound = false;
-    for (int i = 0; i < BOARD_SIZE; i++) {
-        for (int j = 0; j < BOARD_SIZE; j++) {
-            if (gameBoard[i][j] != 'X' && gameBoard[i][j] != 'O') {
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            if (gameBoard[i][j] != 'X' && gameBoard[i][j] != 'O')
+            {
                 emptyFound = true;
                 break;
             }
         }
     }
-    if (!emptyFound) {
+    if (!emptyFound)
+    {
         DrawBoard();
         cout << "The game is a draw." << endl;
         gameOver = true;
