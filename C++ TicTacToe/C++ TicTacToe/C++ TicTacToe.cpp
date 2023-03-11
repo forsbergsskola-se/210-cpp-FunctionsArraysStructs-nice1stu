@@ -71,45 +71,41 @@ void SetUp()
     cout << "     - by Stewart Wan -" << endl;
 
     // Number of players
-    Player2Play:
-    cout << "Please enter the number of player 1 or 2" << endl;
-    string userInput;
-    cin >> userInput;
-    if ((userInput != "1") && (userInput != "2"))
+    int numPlayers;
+    while (true)
     {
-        cout << "Invalid input." << endl;
-        goto Player2Play;
-    }
-    numPlayers = stoi(userInput);
-    numPlayers = (int)fmin((double)numPlayers, 2);
-    if (numPlayers == 2)
-    {
-        // Players enter name
-        for (int i = 0; i < 2; i++)
+        cout << "Please enter the number of player 1 or 2" << endl;
+        string userInput;
+        cin >> userInput;
+        switch (stoi(userInput))
         {
-            cout << "Player " << i + 1 << ", please enter your name" << endl;
-            string playerAnswer;
-            cin >> playerAnswer;
-            playerName[i] = playerAnswer;
+        case 1:
+            numPlayers = 1;
+            cout << "Player 1, please enter your name" << endl;
+            cin >> playerName[0];
+            playerName[1] = "Baymax";
+            cout << endl << "Lets Play !" << endl << endl;
+            DrawBoard();
+            LetsPlay();
+            return;
+        case 2:
+            numPlayers = 2;
+            for (int i = 0; i < 2; i++)
+            {
+                cout << "Player " << i + 1 << ", please enter your name" << endl;
+                cin >> playerName[i];
+            }
+            cout << endl << "Lets Play !" << endl << endl;
+            DrawBoard();
+            LetsPlay();
+            return;
+        default:
+            cout << "Invalid input." << endl;
+            break;
         }
-        cout << endl << "Lets Play !" << endl << endl;
-        DrawBoard();
-        LetsPlay();
-    }
-    else
-    {
-        cout << "Player 1, please enter your name" << endl;
-        string playerAnswer;
-        cin >> playerAnswer;
-        playerName[0] = playerAnswer;
-        cout << "Player 2 is your friendly medical robot Baymax" << endl;
-        this_thread::sleep_for(chrono::milliseconds(3000));
-        playerName[1] = "Baymax";
-        cout << endl << "Lets Play !" << endl << endl;
-        DrawBoard();
-        LetsPlay();
     }
 }
+
 
 void DrawBoard()
 {
