@@ -29,12 +29,10 @@ bool isValidMove(int position)
 
 bool checkWin(int position, char symbol)
 {
-    // Determine the row, column, and diagonal that contain the position of the last move
     int row = position / 3;
     int col = position % 3;
     bool isDiagonal = (row == col) || (row + col == 2);
 
-    // Check the row containing the last move
     bool hasWon = true;
     for (int i = row * 3; i < row * 3 + 3; i++)
     {
@@ -42,7 +40,6 @@ bool checkWin(int position, char symbol)
     }
     if (hasWon) return true;
 
-    // Check the column containing the last move
     hasWon = true;
     for (int i = col; i < BOARD_SIZE; i += 3)
     {
@@ -50,7 +47,6 @@ bool checkWin(int position, char symbol)
     }
     if (hasWon) return true;
 
-    // Check the diagonal containing the last move, if there is one
     if (isDiagonal)
     {
         hasWon = true;
@@ -133,7 +129,6 @@ int main()
             symbol = 'X';
         }
     }
-
     return 0;
 }
 
