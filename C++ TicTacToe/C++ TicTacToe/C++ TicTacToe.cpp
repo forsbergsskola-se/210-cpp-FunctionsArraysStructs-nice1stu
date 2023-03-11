@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <algorithm>
 
 using namespace std;
 
@@ -9,18 +10,15 @@ char board[BOARD_SIZE];
 
 void initBoard()
 {
-    for (int i = 0; i < BOARD_SIZE; i++)
-    {
-        board[i] = '-';
-    }
+    std::fill(std::begin(board), std::end(board), '-');
 }
 
 void printBoard()
 {
     cout << " " << board[0] << " | " << board[1] << " | " << board[2] << " " << endl;
-    cout << "-----------" << endl;
+    cout << "---+---+---" << endl;
     cout << " " << board[3] << " | " << board[4] << " | " << board[5] << " " << endl;
-    cout << "-----------" << endl;
+    cout << "---+---+---" << endl;
     cout << " " << board[6] << " | " << board[7] << " | " << board[8] << " " << endl;
 }
 
@@ -29,25 +27,46 @@ bool isValidMove(int position)
     return (position >= 0 && position <= 8 && board[position] == '-');
 }
 
-bool checkWin(char symbol)
+bool checkWin(int position, char symbol)
 {
-    // Check rows
-    for (int i = 0; i < 9; i += 3)
+    // Determine the row, column, and diagonal that contain the position of the last move
+    int row = position / 3;
+    int col = position % 3;
+    bool isDiagonal = (row == col) || (row + col == 2);
+
+    // Check the row containing the last move
+    bool hasWon = true;
+    for (int i = row * 3; i < row * 3 + 3; i++)
     {
-        if (board[i] == symbol && board[i + 1] == symbol && board[i + 2] == symbol) return true;
+        return (board[i] != symbol);
     }
+    if (hasWon) return true;
 
-    // Check columns
-    for (int i = 0; i < 3; i++)
+    // Check the column containing the last move
+    hasWon = true;
+    for (int i = col; i < BOARD_SIZE; i += 3)
     {
-        if (board[i] == symbol && board[i + 3] == symbol && board[i + 6] == symbol) return true;
+        hasWon = (board[i] == symbol) ? true : false;
     }
+    if (hasWon) return true;
 
-    // Check diagonals
-    if (board[0] == symbol && board[4] == symbol && board[8] == symbol) return true;
-    
-    if (board[2] == symbol && board[4] == symbol && board[6] == symbol) return true;
-
+    // Check the diagonal containing the last move, if there is one
+    if (isDiagonal)
+    {
+        hasWon = true;
+        if (row == col && board[0] == symbol && board[4] == symbol && board[8] == symbol)
+        {
+            hasWon = true;
+        }
+        else
+        {
+            for (int i = 2; i < BOARD_SIZE - 1; i += 2)
+            {
+                hasWon = (board[i] == symbol);
+            }
+        }
+        if (hasWon) return true;
+    }
     return false;
 }
 
@@ -73,8 +92,8 @@ int main()
         {
             do
             {
-                srand(time(NULL)); // seed the random number generator
-                position = rand() % 9; // generate a random number between 0 and 8
+                srand(time(NULL));
+                position = rand() % 9;
             }
             while (!isValidMove(position));
             cout << "Computer chose position " << position << endl;
@@ -90,11 +109,12 @@ int main()
         printBoard();
         moveCount++;
 
-        if (checkWin(symbol))
+        if (checkWin(position, symbol))
         {
             cout << "Player " << player << " wins!" << endl;
             break;
         }
+
 
         if (moveCount == BOARD_SIZE)
         {
