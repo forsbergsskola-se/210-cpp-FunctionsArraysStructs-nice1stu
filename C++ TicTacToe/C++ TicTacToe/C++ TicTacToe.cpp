@@ -68,7 +68,7 @@ int main()
 {
     int player = 1;
     char symbol = 'X';
-    int position;
+    int position = -1;
     int moveCount = 0;
 
     initBoard();
