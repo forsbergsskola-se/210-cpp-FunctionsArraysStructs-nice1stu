@@ -96,9 +96,9 @@ struct EmployeeInfo
 };
 
 //store the info in an array
-void FillInEmployeeArray(EmployeeInfo arr[], int size)
+void FillInEmployeeArray(EmployeeInfo arr[], size_t size)
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; ++i)
     {
         cout << "Enter data for employee " << i + 1 << endl;
         cout << "First Name: " << endl;
@@ -128,7 +128,7 @@ void FillInEmployeeArray(EmployeeInfo arr[], int size)
 //print employee data
 void printEmployeeData(EmployeeInfo employees[], int numEmployees)
 {
-    for (int i = 0; i < numEmployees; i++)
+    for (size_t i = 0; i < numEmployees; ++i)
     {
         cout << "Employee #" << i + 1 << " data:" << endl;
         cout << "First name: " << employees[i].firstName << endl;
@@ -149,7 +149,7 @@ void printEmployeeData(EmployeeInfo employees[], int numEmployees)
 double averageSalary(EmployeeInfo employees[], int numEmployees)
 {
     int sum = 0;
-    for (int i = 0; i < numEmployees; i++)
+    for (size_t i = 0; i < numEmployees; ++i)
     {
         sum += employees[i].salary;
     }

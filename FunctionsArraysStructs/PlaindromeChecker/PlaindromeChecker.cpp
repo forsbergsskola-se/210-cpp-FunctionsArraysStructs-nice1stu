@@ -4,10 +4,9 @@ using namespace std;
 
 bool isPalindrome(string userInput)
 {
-    int n = userInput.length();
-    for (int i = 0; i < n / 2; i++)
+    for (size_t i = 0; i < userInput.length() / 2; ++i)
     {
-        if (userInput[i] != userInput[n - i - 1])
+        if (userInput[i] != userInput[userInput.length() - i - 1])
         {
             return false;
         }

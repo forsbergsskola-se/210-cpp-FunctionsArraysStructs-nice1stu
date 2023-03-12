@@ -19,13 +19,13 @@ int main()
         {
             if (!isWord)
             {
-                wordCount++;
+                ++wordCount;
                 isWord = true;
             }
         }
         else isWord = false;
 
-        pointer++;
+        ++pointer;
     }
 
     cout << "The sentence has " << wordCount << " words." << endl;
