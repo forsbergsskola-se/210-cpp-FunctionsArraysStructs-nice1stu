@@ -6,16 +6,20 @@ using namespace std;
 
 int main()
 {
-    vector<char> userInput = { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'm', 'y', ' ', 'n', 'a', 'm', 'e', ' ', 'i', 's', ' ', 'M', 'a', 'r', 'c' };
+    vector<char> userInput;
+    char c;
     int wordCount = 0;
     bool isWord = false;
 
-    for (auto c : userInput)
+    cout << "Please type in a sentence. Press [Enter] to finish." << endl;
+
+    while (cin.get(c))
     {
-        if (isalpha(c))
-        {
-            isWord = true;
-        }
+        if (c == '\n' || c == '\r') break;
+        
+        userInput.push_back(c);
+
+        if (isalpha(c)) isWord = true;
         else if (isWord)
         {
             wordCount++;
@@ -23,10 +27,7 @@ int main()
         }
     }
 
-    if (isWord)
-    {
-        wordCount++;
-    }
+    if (isWord) wordCount++;
 
     cout << "The sentence has " << wordCount << " words." << endl;
 
