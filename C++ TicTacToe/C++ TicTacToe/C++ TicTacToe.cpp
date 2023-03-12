@@ -18,11 +18,11 @@ void printBoard()
     cout << " " << (board[0] == '-' ? "7" : string(1, board[0])) << " | "
         << (board[1] == '-' ? "8" : string(1, board[1])) << " | "
         << (board[2] == '-' ? "9" : string(1, board[2])) << " " << endl;
-        cout << "---+---+---" << endl;
+        cout << " - + - + -" << endl;
     cout << " " << (board[3] == '-' ? "4" : string(1, board[3])) << " | "
         << (board[4] == '-' ? "5" : string(1, board[4])) << " | "
         << (board[5] == '-' ? "6" : string(1, board[5])) << " " << endl;
-    cout << "---+---+---" << endl;
+    cout << " - + - + -" << endl;
     cout << " " << (board[6] == '-' ? "1" : string(1, board[6])) << " | "
         << (board[7] == '-' ? "2" : string(1, board[7])) << " | "
         << (board[8] == '-' ? "3" : string(1, board[8])) << " " << endl;
@@ -102,8 +102,6 @@ int getPlayerMove(char symbol)
     return position + 1;
 }
 
-
-
 int main()
 {
     int player = 1;
@@ -121,14 +119,12 @@ int main()
 
         if (player == 1)
         {
-            // Player's turn
             do
             {
                 cout << "Enter a position (1-9): ";
                 int input;
                 cin >> input;
 
-                // Convert input to board index (accounting for the offset)
                 switch (input)
                 {
                 case 1: position = 6; break;
@@ -147,10 +143,8 @@ int main()
 
         else
         {
-            // Computer's turn
             bool hasMoved = false;
 
-            // Check for a winning move
             for (int i = 0; i < BOARD_SIZE; i++)
             {
                 if (isValidMove(i))
@@ -166,7 +160,6 @@ int main()
                 }
             }
 
-            // Check for a blocking move
             if (!hasMoved)
             {
                 char opponentSymbol = (symbol == 'X') ? 'O' : 'X';
@@ -186,7 +179,6 @@ int main()
                 }
             }
 
-            // Choose a random move if no winning or blocking move is possible
             if (!hasMoved)
             {
                 do
@@ -196,15 +188,12 @@ int main()
                 }
                 while (!isValidMove(position));
             }
-
             cout << "Computer chose position " << position << endl;
         }
 
-        // Make the move
         board[position] = symbol;
         printBoard();
 
-        // Check if the game is over
         if (checkWin(position, symbol))
         {
             cout << "Player " << player << " wins!" << endl;
@@ -216,11 +205,9 @@ int main()
             break;
         }
 
-        // Switch to the other player
         player = (player == 1) ? 2 : 1;
         symbol = (symbol == 'X') ? 'O' : 'X';
         moveCount++;
     }
-
     return 0;
 }
