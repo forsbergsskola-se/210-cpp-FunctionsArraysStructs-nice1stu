@@ -15,17 +15,17 @@ void initBoard()
 
 void printBoard()
 {
-    cout << " " << (board[0] == '-' ? "0" : string(1, board[0])) << " | "
-        << (board[1] == '-' ? "1" : string(1, board[1])) << " | "
-        << (board[2] == '-' ? "2" : string(1, board[2])) << " " << endl;
+    cout << " " << (board[0] == '-' ? "7" : string(1, board[0])) << " | "
+        << (board[1] == '-' ? "8" : string(1, board[1])) << " | "
+        << (board[2] == '-' ? "9" : string(1, board[2])) << " " << endl;
+        cout << "---+---+---" << endl;
+    cout << " " << (board[3] == '-' ? "4" : string(1, board[3])) << " | "
+        << (board[4] == '-' ? "5" : string(1, board[4])) << " | "
+        << (board[5] == '-' ? "6" : string(1, board[5])) << " " << endl;
     cout << "---+---+---" << endl;
-    cout << " " << (board[3] == '-' ? "3" : string(1, board[3])) << " | "
-        << (board[4] == '-' ? "4" : string(1, board[4])) << " | "
-        << (board[5] == '-' ? "5" : string(1, board[5])) << " " << endl;
-    cout << "---+---+---" << endl;
-    cout << " " << (board[6] == '-' ? "6" : string(1, board[6])) << " | "
-        << (board[7] == '-' ? "7" : string(1, board[7])) << " | "
-        << (board[8] == '-' ? "8" : string(1, board[8])) << " " << endl;
+    cout << " " << (board[6] == '-' ? "1" : string(1, board[6])) << " | "
+        << (board[7] == '-' ? "2" : string(1, board[7])) << " | "
+        << (board[8] == '-' ? "3" : string(1, board[8])) << " " << endl;
 }
 
 bool isValidMove(int position)
@@ -92,12 +92,17 @@ int getPlayerMove(char symbol)
     int position;
     do
     {
-        cout << "Enter a position (0-8): ";
+        cout << "Enter a position (1-9): ";
         cin >> position;
+        position--;
+        cout << "Position after subtraction: " << position << endl;
     } while (!isValidMove(position));
     board[position] = symbol;
-    return position;
+    cout << "Cell " << position + 1 << " now contains " << board[position] << endl;
+    return position + 1;
 }
+
+
 
 int main()
 {
@@ -119,11 +124,27 @@ int main()
             // Player's turn
             do
             {
-                cout << "Enter a position (0-8): ";
-                cin >> position;
-            }
-            while (!isValidMove(position));
+                cout << "Enter a position (1-9): ";
+                int input;
+                cin >> input;
+
+                // Convert input to board index (accounting for the offset)
+                switch (input)
+                {
+                case 1: position = 6; break;
+                case 2: position = 7; break;
+                case 3: position = 8; break;
+                case 4: position = 3; break;
+                case 5: position = 4; break;
+                case 6: position = 5; break;
+                case 7: position = 0; break;
+                case 8: position = 1; break;
+                case 9: position = 2; break;
+                default: position = -1; break;
+                }
+            } while (position == -1 || !isValidMove(position));
         }
+
         else
         {
             // Computer's turn
