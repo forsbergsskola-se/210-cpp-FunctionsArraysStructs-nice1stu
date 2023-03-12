@@ -18,7 +18,7 @@ void printBoard()
     cout << " " << (board[0] == '-' ? "7" : string(1, board[0])) << " | "
         << (board[1] == '-' ? "8" : string(1, board[1])) << " | "
         << (board[2] == '-' ? "9" : string(1, board[2])) << " " << endl;
-        cout << " - + - + -" << endl;
+    cout << " - + - + -" << endl;
     cout << " " << (board[3] == '-' ? "4" : string(1, board[3])) << " | "
         << (board[4] == '-' ? "5" : string(1, board[4])) << " | "
         << (board[5] == '-' ? "6" : string(1, board[5])) << " " << endl;
@@ -39,53 +39,15 @@ bool checkWin(int position, char symbol)
     int col = position % 3;
     bool isDiagonal = (row == col) || (row + col == 2);
 
-    bool hasWon = false;
-    for (int i = row * 3; i < row * 3 + 3; i++)
-    {
-        if (board[i] != symbol)
-        {
-            hasWon = false;
-            break;
-        }
-        hasWon = true;
-    }
-    if (hasWon) return true;
+    if (row >= 0 && row <= 2 && board[row * 3] == symbol && board[row * 3 + 1] == symbol && board[row * 3 + 2] == symbol) return true;
 
-    hasWon = false;
-    for (int i = col; i < BOARD_SIZE; i += 3)
-    {
-        if (board[i] != symbol)
-        {
-            hasWon = false;
-            break;
-        }
-        hasWon = true;
-    }
-    if (hasWon) return true;
+    if (board[col] == symbol && board[col + 3] == symbol && board[col + 6] == symbol) return true;
 
-    if (isDiagonal)
-    {
-        hasWon = false;
-        if (row == col && board[0] == symbol && board[4] == symbol && board[8] == symbol)
-        {
-            hasWon = true;
-        }
-        else
-        {
-            for (int i = 2; i <= 6; i += 2)
-            {
-                if (board[i] != symbol)
-                {
-                    hasWon = false;
-                    break;
-                }
-                hasWon = true;
-            }
-        }
-        if (hasWon) return true;
-    }
+    if ((board[0] == symbol && board[4] == symbol && board[8] == symbol) || (board[2] == symbol && board[4] == symbol && board[6] == symbol)) return true;
+    
     return false;
 }
+
 
 int getPlayerMove(char symbol)
 {
@@ -145,7 +107,7 @@ int main()
         {
             bool hasMoved = false;
 
-            for (int i = 0; i < BOARD_SIZE; i++)
+            for (int i = 0; i < BOARD_SIZE; ++i)
             {
                 if (isValidMove(i))
                 {
@@ -163,7 +125,7 @@ int main()
             if (!hasMoved)
             {
                 char opponentSymbol = (symbol == 'X') ? 'O' : 'X';
-                for (int i = 0; i < BOARD_SIZE; i++)
+                for (int i = 0; i < BOARD_SIZE; ++i)
                 {
                     if (isValidMove(i))
                     {
