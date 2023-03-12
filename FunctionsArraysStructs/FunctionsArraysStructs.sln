@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AverageInputArray", "Averag
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WordCount", "WordCount\WordCount.vcxproj", "{1E68ECEC-52A9-4852-B89C-1F8430426F41}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PlaindromeChecker", "PlaindromeChecker\PlaindromeChecker.vcxproj", "{FB88E3D5-F436-467D-B8F1-22388D70FEA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{1E68ECEC-52A9-4852-B89C-1F8430426F41}.Release|x64.Build.0 = Release|x64
 		{1E68ECEC-52A9-4852-B89C-1F8430426F41}.Release|x86.ActiveCfg = Release|Win32
 		{1E68ECEC-52A9-4852-B89C-1F8430426F41}.Release|x86.Build.0 = Release|Win32
+		{FB88E3D5-F436-467D-B8F1-22388D70FEA3}.Debug|x64.ActiveCfg = Debug|x64
+		{FB88E3D5-F436-467D-B8F1-22388D70FEA3}.Debug|x64.Build.0 = Debug|x64
+		{FB88E3D5-F436-467D-B8F1-22388D70FEA3}.Debug|x86.ActiveCfg = Debug|Win32
+		{FB88E3D5-F436-467D-B8F1-22388D70FEA3}.Debug|x86.Build.0 = Debug|Win32
+		{FB88E3D5-F436-467D-B8F1-22388D70FEA3}.Release|x64.ActiveCfg = Release|x64
+		{FB88E3D5-F436-467D-B8F1-22388D70FEA3}.Release|x64.Build.0 = Release|x64
+		{FB88E3D5-F436-467D-B8F1-22388D70FEA3}.Release|x86.ActiveCfg = Release|Win32
+		{FB88E3D5-F436-467D-B8F1-22388D70FEA3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
