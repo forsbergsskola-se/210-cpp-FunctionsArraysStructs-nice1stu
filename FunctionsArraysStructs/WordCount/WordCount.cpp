@@ -1,35 +1,35 @@
 #include <iostream>
-#include <vector>
 #include <cctype>
 
 using namespace std;
 
 int main()
 {
-    vector<char> userInput;
-    char c;
+    char* userInput = new char[100];
     int wordCount = 0;
     bool isWord = false;
+    char* pointer = userInput;
 
     cout << "Please type in a sentence. Press [Enter] to finish." << endl;
+    cin.getline(userInput, 100);
 
-    while (cin.get(c))
+    while (*pointer != '\0')
     {
-        if (c == '\n' || c == '\r') break;
-        
-        userInput.push_back(c);
-
-        if (isalpha(c)) isWord = true;
-        else if (isWord)
+        if (isalpha(*pointer))
         {
-            wordCount++;
-            isWord = false;
+            if (!isWord)
+            {
+                wordCount++;
+                isWord = true;
+            }
         }
-    }
+        else isWord = false;
 
-    if (isWord) wordCount++;
+        pointer++;
+    }
 
     cout << "The sentence has " << wordCount << " words." << endl;
 
+    delete[] userInput;
     return 0;
 }
