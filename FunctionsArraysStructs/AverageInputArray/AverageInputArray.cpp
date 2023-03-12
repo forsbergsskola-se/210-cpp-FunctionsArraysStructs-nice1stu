@@ -1,30 +1,50 @@
 #include <cstdio>
 #include <vector>
 #include <iostream>
-#include <conio.h>
+#include <string>
 
 using namespace std;
 
 int main()
 {
-	std::vector<float> userInputArray;
+    std::vector<float> userInputArray;
 
-	while (true)
-	{
-		cout << "Input a number you want to add to the list" << endl;
-		cout << "Press [esc] when you are finished" << endl;
-		
-		int input = 0;
-		char c = _getch();
-		if (c == 27)
-		{
-			break;
-		}
-		else
-		{
-			cin >> input;
-		}
+    while (true)
+    {
+        cout << "Input a number you want to add to the list" << endl;
+        cout << "Press q when you are finished" << endl;
 
-		userInputArray.push_back(input);
-	}
+        string line;
+        getline(cin, line);
+
+        if (line.empty()) {
+            continue;
+        }
+
+        if (line == "q")
+        {
+            break;
+        }
+
+        float number = stof(line);
+        userInputArray.push_back(number);
+    }
+
+    int arrayTotal = 0;
+    for (size_t i = 0; i < userInputArray.size(); ++i)
+    {
+        arrayTotal += userInputArray[i];
+    }
+
+    float average = (float)arrayTotal / (float)userInputArray.size();
+
+    cout << "The numbers in the list you inputed are: ";
+    for (size_t i = 0; i < userInputArray.size(); ++i)
+    {
+        cout << userInputArray[i] << " ";
+    }
+    cout << endl;
+    cout << "The average of the list contents is: " << average << endl;
+
+    return 0;
 }
