@@ -15,17 +15,17 @@ void initBoard()
 
 void printBoard()
 {
-    cout << " " << (board[0] == '-' ? "7" : string(1, board[0])) << " | "
-        << (board[1] == '-' ? "8" : string(1, board[1])) << " | "
-        << (board[2] == '-' ? "9" : string(1, board[2])) << " " << endl;
+    cout << " " << (board[0] == '-' ? "\033[31m7\033[0m" : string(1, board[0])) << " | "
+        << (board[1] == '-' ? "\033[31m8\033[0m" : string(1, board[1])) << " | "
+        << (board[2] == '-' ? "\033[31m9\033[0m" : string(1, board[2])) << " " << endl;
     cout << " - + - + -" << endl;
-    cout << " " << (board[3] == '-' ? "4" : string(1, board[3])) << " | "
-        << (board[4] == '-' ? "5" : string(1, board[4])) << " | "
-        << (board[5] == '-' ? "6" : string(1, board[5])) << " " << endl;
+    cout << " " << (board[3] == '-' ? "\033[31m4\033[0m" : string(1, board[3])) << " | "
+        << (board[4] == '-' ? "\033[31m5\033[0m" : string(1, board[4])) << " | "
+        << (board[5] == '-' ? "\033[31m6\033[0m" : string(1, board[5])) << " " << endl;
     cout << " - + - + -" << endl;
-    cout << " " << (board[6] == '-' ? "1" : string(1, board[6])) << " | "
-        << (board[7] == '-' ? "2" : string(1, board[7])) << " | "
-        << (board[8] == '-' ? "3" : string(1, board[8])) << " " << endl;
+    cout << " " << (board[6] == '-' ? "\033[31m1\033[0m" : string(1, board[6])) << " | "
+        << (board[7] == '-' ? "\033[31m2\033[0m" : string(1, board[7])) << " | "
+        << (board[8] == '-' ? "\033[31m3\033[0m" : string(1, board[8])) << " " << endl;
 }
 
 bool isValidMove(int position)
@@ -56,12 +56,12 @@ int getPlayerMove(char symbol)
     {
         cout << "Enter a position (1-9): ";
         cin >> position;
-        position--;
+        --position;
         cout << "Position after subtraction: " << position << endl;
     } while (!isValidMove(position));
     board[position] = symbol;
-    cout << "Cell " << position + 1 << " now contains " << board[position] << endl;
-    return position + 1;
+    cout << "Cell " << ++position << " now contains " << board[position] << endl;
+    return ++position;
 }
 
 int main()
@@ -107,7 +107,7 @@ int main()
         {
             bool hasMoved = false;
 
-            for (int i = 0; i < BOARD_SIZE; ++i)
+            for (size_t i = 0; i < BOARD_SIZE; ++i)
             {
                 if (isValidMove(i))
                 {
@@ -125,7 +125,7 @@ int main()
             if (!hasMoved)
             {
                 char opponentSymbol = (symbol == 'X') ? 'O' : 'X';
-                for (int i = 0; i < BOARD_SIZE; ++i)
+                for (size_t i = 0; i < BOARD_SIZE; ++i)
                 {
                     if (isValidMove(i))
                     {
@@ -154,6 +154,7 @@ int main()
         }
 
         board[position] = symbol;
+        system("cls");
         printBoard();
 
         if (checkWin(position, symbol))
@@ -169,7 +170,7 @@ int main()
 
         player = (player == 1) ? 2 : 1;
         symbol = (symbol == 'X') ? 'O' : 'X';
-        moveCount++;
+        ++moveCount;
     }
     return 0;
 }
