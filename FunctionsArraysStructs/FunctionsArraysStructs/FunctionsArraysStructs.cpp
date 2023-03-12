@@ -92,6 +92,7 @@ struct EmployeeInfo
     int dateOfEmployment;
     char gender[256];
     Address address;
+    int salary;
 };
 
 //store the info in an array
@@ -118,6 +119,8 @@ void FillInEmployeeArray(EmployeeInfo arr[], int size)
         cin >> arr[i].address.addressStreet;
         cout << "Address City: " << endl;
         cin >> arr[i].address.addressCity;
+        cout << "Employee Salary" << endl;
+        cin >> arr[i].salary;
         cout << endl;
     }
 }
@@ -137,9 +140,22 @@ void printEmployeeData(EmployeeInfo employees[], int numEmployees)
         cout << "Street number: " << employees[i].address.addressStreetNo << endl;
         cout << "Street name: " << employees[i].address.addressStreet << endl;
         cout << "City: " << employees[i].address.addressCity << endl;
+        cout << "Salary: " << employees[i].salary << endl;
         cout << endl;
     }
 }
+
+//average employeeSalary
+double averageSalary(EmployeeInfo employees[], int numEmployees)
+{
+    int sum = 0;
+    for (int i = 0; i < numEmployees; i++)
+    {
+        sum += employees[i].salary;
+    }
+    return (double)sum / numEmployees;
+}
+
 
 //Vector Addition
 struct Vector
@@ -207,10 +223,12 @@ int main()
     getUserInput(number, 9);
 
     //Employee Info
-    const int numEmployees = 2;
+    const int numEmployees = 5;
     EmployeeInfo employees[numEmployees];
     FillInEmployeeArray(employees, numEmployees);
     printEmployeeData(employees, numEmployees);
+    double avgSalary = averageSalary(employees, numEmployees);
+    cout << "Average Salary: " << avgSalary << endl;
 
     //Swap values behind both pointers
     int four = 4;
