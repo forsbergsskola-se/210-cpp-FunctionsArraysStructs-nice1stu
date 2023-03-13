@@ -153,7 +153,7 @@ double averageSalary(EmployeeInfo employees[], size_t numEmployees)
     {
         sum += employees[i].salary;
     }
-    return (double)sum / numEmployees;
+    return sum / numEmployees;
 }
 
 
