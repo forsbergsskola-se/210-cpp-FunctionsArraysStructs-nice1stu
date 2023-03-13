@@ -1,11 +1,38 @@
-// C++Calculator.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+
+using namespace std;
+
+auto num1{ 0 };
+auto num2{ 0 };
+string operation {};
+
+class Calculator
+{
+public:
+	Calculator();
+	~Calculator();
+
+private:
+
+};
+
+Calculator::Calculator()
+{
+}
+
+Calculator::~Calculator()
+{
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    cout << "Welcome to C++ Calculator" << endl;
+	cout << "Enter the 1st number: ";
+	cin >> num1;
+	cout << "What calculation would you like to carry out?" << endl;
+	cin >> operation;
+	cout << "... and enter the 2nd number: " << endl;
+	cin >> num2;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
