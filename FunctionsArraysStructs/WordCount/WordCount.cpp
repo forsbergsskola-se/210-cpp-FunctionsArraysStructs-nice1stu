@@ -5,9 +5,10 @@ using namespace std;
 
 int main()
 {
-    char* userInput = new char[100];
+    char userInput[100];
     int wordCount = 0;
     bool isWord = false;
+    // array decay
     char* pointer = userInput;
 
     cout << "Please type in a sentence. Press [Enter] to finish." << endl;
@@ -30,6 +31,5 @@ int main()
 
     cout << "The sentence has " << wordCount << " words." << endl;
 
-    delete[] userInput;
     return 0;
 }
