@@ -50,7 +50,6 @@ void Calculator::Calculate()
         cout << "I can't do that Dave." << endl;
         return;
     }
-
 }
 
 int main()
