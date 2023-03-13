@@ -17,8 +17,8 @@ public:
     Calculator(MathOperation op);
     ~Calculator();
     void Calculate();
-    void setNum1(float num) { num1 = num; }
-    void setNum2(float num) { num2 = num; }
+    void setNum1(float* num) { num1 = *num; }
+    void setNum2(float* num) { num2 = *num; }
     float getAnswer() const { return answer; }
 
 private:
@@ -61,19 +61,18 @@ int main()
     cout << "Welcome to C++ Calculator" << endl;
     cout << "Enter the 1st number: ";
     cin >> num1;
-
     cout << "What calculation would you like to carry out?" << endl;
     cout << "0 - Add" << endl;
     cout << "1 - Subtract" << endl;
     cout << "2 - Multiply" << endl;
     cout << "3 - Divide" << endl;
     cin >> operation;
-        cout << "Enter the 2nd number: ";
+    cout << "Enter the 2nd number: ";
     cin >> num2;
 
     Calculator calc(static_cast<MathOperation>(operation));
-    calc.setNum1(num1);
-    calc.setNum2(num2);
+    calc.setNum1(&num1);
+    calc.setNum2(&num2);
     calc.Calculate();
     cout << "Answer: " << calc.getAnswer() << endl;
 
