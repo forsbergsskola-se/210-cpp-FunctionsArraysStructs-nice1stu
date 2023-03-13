@@ -146,7 +146,7 @@ void printEmployeeData(EmployeeInfo employees[], int numEmployees)
 }
 
 //average employeeSalary
-double averageSalary(EmployeeInfo employees[], int numEmployees)
+double averageSalary(EmployeeInfo employees[], size_t numEmployees)
 {
     int sum = 0;
     for (size_t i = 0; i < numEmployees; ++i)
