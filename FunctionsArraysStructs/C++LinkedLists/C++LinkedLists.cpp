@@ -1,20 +1,50 @@
-// C++LinkedLists.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+//C++ Linked List
 
 #include <iostream>
 
-int main()
+using namespace std;
+
+
+template <typename ItemType>
+class LinkedList
 {
-    std::cout << "Hello World!\n";
+public:
+	LinkedList();
+	~LinkedList();
+
+private:
+    template <typename LLElement>
+    struct Node
+    {
+        Node<LLElement>* next;
+        Node<LLElement>* previous;
+
+        LLElement data;
+    };
+    Node<ItemType>* head;
+};
+
+template <typename ItemType>
+LinkedList<ItemType>::LinkedList()
+{
+    LinkedList::head = nullptr;
+}
+template <typename ItemType>
+LinkedList<ItemType>::~LinkedList()
+{
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+int main()
+{
+    auto lL = new LinkedList<int>();
+}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+// node
+// count
+// AddRange
+// Add
+// Get
+// Set
+// Remove
+// Clear
+// IEnumeraotr?

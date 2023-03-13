@@ -17,6 +17,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PeoplePopper", "PeoplePoppe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C++Calculator", "C++Calculator\C++Calculator.vcxproj", "{41D66623-AAF8-49E3-9E88-ABBA9D751EC9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C++LinkedLists", "C++LinkedLists\C++LinkedLists.vcxproj", "{23B62B46-B4E8-4DE2-B771-A884D6D7D443}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C++linkedList-Test", "C++linkedList-Test\C++linkedList-Test.vcxproj", "{F2EEEAFB-4353-4F68-B217-B5505EFEC208}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -81,6 +85,22 @@ Global
 		{41D66623-AAF8-49E3-9E88-ABBA9D751EC9}.Release|x64.Build.0 = Release|x64
 		{41D66623-AAF8-49E3-9E88-ABBA9D751EC9}.Release|x86.ActiveCfg = Release|Win32
 		{41D66623-AAF8-49E3-9E88-ABBA9D751EC9}.Release|x86.Build.0 = Release|Win32
+		{23B62B46-B4E8-4DE2-B771-A884D6D7D443}.Debug|x64.ActiveCfg = Debug|x64
+		{23B62B46-B4E8-4DE2-B771-A884D6D7D443}.Debug|x64.Build.0 = Debug|x64
+		{23B62B46-B4E8-4DE2-B771-A884D6D7D443}.Debug|x86.ActiveCfg = Debug|Win32
+		{23B62B46-B4E8-4DE2-B771-A884D6D7D443}.Debug|x86.Build.0 = Debug|Win32
+		{23B62B46-B4E8-4DE2-B771-A884D6D7D443}.Release|x64.ActiveCfg = Release|x64
+		{23B62B46-B4E8-4DE2-B771-A884D6D7D443}.Release|x64.Build.0 = Release|x64
+		{23B62B46-B4E8-4DE2-B771-A884D6D7D443}.Release|x86.ActiveCfg = Release|Win32
+		{23B62B46-B4E8-4DE2-B771-A884D6D7D443}.Release|x86.Build.0 = Release|Win32
+		{F2EEEAFB-4353-4F68-B217-B5505EFEC208}.Debug|x64.ActiveCfg = Debug|x64
+		{F2EEEAFB-4353-4F68-B217-B5505EFEC208}.Debug|x64.Build.0 = Debug|x64
+		{F2EEEAFB-4353-4F68-B217-B5505EFEC208}.Debug|x86.ActiveCfg = Debug|Win32
+		{F2EEEAFB-4353-4F68-B217-B5505EFEC208}.Debug|x86.Build.0 = Debug|Win32
+		{F2EEEAFB-4353-4F68-B217-B5505EFEC208}.Release|x64.ActiveCfg = Release|x64
+		{F2EEEAFB-4353-4F68-B217-B5505EFEC208}.Release|x64.Build.0 = Release|x64
+		{F2EEEAFB-4353-4F68-B217-B5505EFEC208}.Release|x86.ActiveCfg = Release|Win32
+		{F2EEEAFB-4353-4F68-B217-B5505EFEC208}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
