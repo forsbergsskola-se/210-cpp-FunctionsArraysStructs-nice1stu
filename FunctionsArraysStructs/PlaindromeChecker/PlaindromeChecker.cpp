@@ -2,16 +2,13 @@
 
 using namespace std;
 
-bool isPalindrome(char* arr, size_t length)
+bool isPalindrome(char* letter, size_t length)
 {
-    char* front = arr;
-    char* back = arr + length - 2;
+    char* front = letter;
+    char* back = letter + length - 2;
     for (size_t i = 0; i < length-1; ++i)
     {
-        if (*front != *back)
-        {
-            return false;
-        }
+        if (*front != *back) return false;
     }
     return true;
 }
@@ -26,8 +23,6 @@ int main()
     if (isPalindrome) cout << "It is a palindrome" << endl;
     
     else cout << "It is not a palindrome" << endl;
-
-    delete[] userInput;
 
     return 0;
 }
