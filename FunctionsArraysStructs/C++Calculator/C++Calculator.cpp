@@ -1,47 +1,81 @@
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
-auto num1{ 0 };
-auto num2{ 0 };
-string operation {};
+enum class MathOperation : int
+{
+    Add,
+    Subtract,
+    Multiply,
+    Divide
+};
 
 class Calculator
 {
 public:
-	Calculator();
-	~Calculator();
+    Calculator(MathOperation op);
+    ~Calculator();
+    void Calculate();
+    void setNum1(float num) { num1 = num; }
+    void setNum2(float num) { num2 = num; }
+    float getAnswer() const { return answer; }
 
 private:
-
+    float num1;
+    float num2;
+    float answer;
+    MathOperation operation;
 };
 
-Calculator::Calculator()
+Calculator::Calculator(MathOperation op)
 {
+    operation = op;
 }
 
-Calculator::~Calculator()
+Calculator::~Calculator() {}
+
+void Calculator::Calculate()
 {
+    if (operation == MathOperation::Add) answer = num1 + num2;
+
+    else if (operation == MathOperation::Subtract) answer = num1 - num2;
+
+    else if (operation == MathOperation::Multiply) answer = num1 * num2;
+
+    else if (operation == MathOperation::Divide) answer = num1 / num2;
+
+    else
+    {
+        cout << "I can't do that Dave." << endl;
+        return;
+    }
+
 }
 
 int main()
 {
+    float num1, num2;
+    int operation;
+
     cout << "Welcome to C++ Calculator" << endl;
-	cout << "Enter the 1st number: ";
-	cin >> num1;
-	cout << "What calculation would you like to carry out?" << endl;
-	cin >> operation;
-	cout << "... and enter the 2nd number: " << endl;
-	cin >> num2;
+    cout << "Enter the 1st number: ";
+    cin >> num1;
+
+    cout << "What calculation would you like to carry out?" << endl;
+    cout << "0 - Add" << endl;
+    cout << "1 - Subtract" << endl;
+    cout << "2 - Multiply" << endl;
+    cout << "3 - Divide" << endl;
+    cin >> operation;
+        cout << "Enter the 2nd number: ";
+    cin >> num2;
+
+    Calculator calc(static_cast<MathOperation>(operation));
+    calc.setNum1(num1);
+    calc.setNum2(num2);
+    calc.Calculate();
+    cout << "Answer: " << calc.getAnswer() << endl;
+
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
