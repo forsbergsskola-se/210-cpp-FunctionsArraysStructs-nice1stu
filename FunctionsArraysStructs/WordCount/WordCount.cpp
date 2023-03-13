@@ -5,8 +5,8 @@ using namespace std;
 
 int main()
 {
-    char userInput[100];
-    int wordCount = 0;
+    char userInput [100];
+    auto wordCount { 0 };
     bool isWord = false;
     // array decay
     char* pointer = userInput;

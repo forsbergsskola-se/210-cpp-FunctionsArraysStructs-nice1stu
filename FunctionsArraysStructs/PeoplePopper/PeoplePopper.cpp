@@ -34,7 +34,7 @@ void DisplayPeopleArrayNames(const vector<Person*>& people)
 
 int main()
 {
-    int howMany = 0;
+    auto howMany{ 0 };
     cout << "How many people would you like to create?" << endl;
     cin >> howMany;
 
