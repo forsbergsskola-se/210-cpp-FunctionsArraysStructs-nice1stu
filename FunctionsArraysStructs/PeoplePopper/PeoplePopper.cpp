@@ -3,29 +3,27 @@
 
 using namespace std;
 
-vector<string> PeopleArray;
-int howMany = 0;
-
 struct Person
 {
     string personName;
 };
 
-void FillInPeopleArray(vector<Person>& people)
+void FillInPeopleArray(vector<Person*>& people)
 {
     for (size_t i = 0; i < people.size(); ++i)
     {
-        cout << "What's the next person supposed to be called?" << i + 1 << endl;
-        cin >> people[i].personName;
+        people[i] = new Person;
+        cout << "What's the next person supposed to be called?" << endl;
+        cin >> people[i]->personName;
         cout << endl;
     }
 }
 
-void DisplayPeopleArrayNames(const vector<Person>& people)
+void DisplayPeopleArrayNames(const vector<Person*>& people)
 {
     for (size_t i = 0; i < people.size(); ++i)
     {
-        cout << people[i].personName;
+        cout << people[i]->personName;
         if (i != people.size() - 1)
         {
             cout << ", ";
@@ -34,13 +32,18 @@ void DisplayPeopleArrayNames(const vector<Person>& people)
     cout << endl;
 }
 
-
 int main()
 {
+    int howMany = 0;
     cout << "How many people would you like to create?" << endl;
     cin >> howMany;
 
-    vector<Person> PeopleArray(howMany);
+    vector<Person*> PeopleArray(howMany);
     FillInPeopleArray(PeopleArray);
     DisplayPeopleArrayNames(PeopleArray);
+
+    for (size_t i = 0; i < PeopleArray.size(); ++i)
+    {
+        delete PeopleArray[i];
+    }
 }
