@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{88366f78-81d9-45bc-b7f0-70b1ce0914d9}</ProjectGuid>
-    <RootNamespace>CLinkedList</RootNamespace>
+    <ProjectGuid>{cd08fe6f-1a70-4531-a3a5-251cc297d6c6}</ProjectGuid>
+    <RootNamespace>StringClassExercise</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="C++LinkedList.cpp" />
+    <ClCompile Include="StringClassExercise.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
