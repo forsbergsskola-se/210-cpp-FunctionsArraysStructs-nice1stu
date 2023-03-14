@@ -1,28 +1,26 @@
-#include "pch.h"
-#include "catch2.hpp"
+#include "LinkedList.h"
+#include "CppUnitTest.h"
 
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-TEST(TestEmptyListAddOneSizeOne, TestAddOne)
+namespace UnitTestLinkedList
 {
-	GIVEN("An empty linked list")
-	{
-		auto lL = new LinkedList<int>();
+    TEST_CLASS(UnitTestLinkedList)
+    {
+    public:
+        TEST_METHOD(TestAddOne)
+        {
+            LinkedList<int> list;
+            list.Add(1);
+            Assert::AreEqual(1, list.Size(), L"Size of list should be 1", LINE_INFO());
+        }
 
-		_When_("I add an item")
-		{
-			iL->Add(0);
-
-			REQUIRE(lL->size == 0);
-
-			Then("Size is 1")
-			{
-				REQUIRE(iL -> size == 1);
-			}
-		}
-	}
-	
-  EXPECT_EQ(1, 1);
-  EXPECT_TRUE(true);
+        TEST_METHOD(TestEmptyList)
+        {
+            LinkedList<int> list;
+            Assert::AreEqual(0, list.Size(), L"Size of list should be 0", LINE_INFO());
+        }
+    };
 }
 
 // Setup
