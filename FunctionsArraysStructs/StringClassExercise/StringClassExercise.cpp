@@ -19,10 +19,8 @@ public:
     StringClassExercise(const char* defaultText, size_t maxSize) : buffer(defaultText), length(buffer.size()), maxSize(maxSize)
     {
         cout << "Constructing string with default text \"" << defaultText << "\"\n";
-        if (length >= maxSize)
-        {
-            throw runtime_error("Default text is too long!");
-        }
+
+        if (length >= maxSize) throw runtime_error("Default text is too long!");
     }
 
     ~StringClassExercise()
@@ -33,37 +31,31 @@ public:
     void append(const char* text)
     {
         size_t textLength = strlen(text);
-        if (length + textLength >= maxSize) throw runtime_error("String would exceed max size!");
-        
-        buffer.resize(length + textLength);
-        for (int i = 0; i < textLength; i++)
-        {
-            buffer[length + i] = text[i];
-        }
-        buffer[length + textLength] = '\0';
+
+        if (length + textLength >= maxSize) throw std::runtime_error("String would exceed max size!");
+
+        buffer.append(text, textLength);
         length += textLength;
     }
 
-
-    void appendLine(const char* text)
+    void appendLine(const std::string& text)
     {
-        size_t textLength = char_traits<char>::length(text);
-        if (this->length + textLength + 1 >= this->maxSize) throw runtime_error("String with line break would exceed max size!");
+        if (length + text.length() >= maxSize) throw std::runtime_error("String would exceed max size!");
 
-        this->buffer += text;
-        this->buffer += '\n';
-        this->length += textLength + 1;
+        buffer.append(text);
+        length += text.length();
     }
 
-    // Print the current buffer
     void print()
     {
         cout << "Current string: \"" << this->buffer << "\"\n";
     }
 
+
+
     const char* getString() const
     {
-        return this->buffer.c_str();
+        return this->buffer.data();
     }
 
 
