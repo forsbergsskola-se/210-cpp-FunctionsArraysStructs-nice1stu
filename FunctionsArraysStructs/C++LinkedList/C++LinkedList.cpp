@@ -1,106 +1,81 @@
-//C++ Linked List
 #include <iostream>
+#include <cstring>
 
-using namespace std;
-
-template <typename ItemType>
-class LinkedList
+class FixedString
 {
 public:
-    LinkedList();
-    ~LinkedList();
-
-    void Add(const ItemType& item);
-    void Remove(const ItemType& item);
-    uint64_t size();
+    FixedString(int maxSize);
+    FixedString(const char* defaultText, int maxSize);
+    ~FixedString();
+    void append(const char* text);
+    void appendLine(const char* text);
+    void print();
+    const char* getString();
 
 private:
-    struct Node
-    {
-        Node* next;
-        Node* previous;
-        ItemType data;
-    };
-
-    Node* head;
-    Node* tail;
-
-    Node* makeNode(const ItemType& item);
+    int length;
+    char* buffer;
+    int maxSize;
 };
 
-template <typename ItemType>
-LinkedList<ItemType>::LinkedList()
-{
-    head = nullptr;
-    tail = nullptr;
+int main() {
+    FixedString str1(10);
+    FixedString str2("Hello", 10);
+    str1.append("World");
+    str1.appendLine("!");
+    str1.print();
+    std::cout << "String contents: " << str1.getString() << std::endl;
+    return 0;
 }
 
-template <typename ItemType>
-LinkedList<ItemType>::~LinkedList()
+FixedString::FixedString(int maxSize) : length(0), maxSize(maxSize)
 {
-    Node* current = head;
-    while (current != nullptr)
+    buffer = new char[maxSize];
+    std::cout << "Constructed empty string" << std::endl;
+}
+
+FixedString::FixedString(const char* defaultText, int maxSize) : maxSize(maxSize)
+{
+    int defaultLength = std::strlen(defaultText);
+    if (defaultLength > maxSize)
     {
-        Node* next = current->next;
-        delete current;
-        current = next;
+        throw std::invalid_argument("defaultText is longer than maxSize");
     }
+    buffer = new char[maxSize];
+    std::memcpy(buffer, defaultText, defaultLength + 1);
+    length = defaultLength;
+    std::cout << "Constructed string with text: " << buffer << std::endl;
 }
 
-template <typename ItemType>
-typename LinkedList<ItemType>::Node* LinkedList<ItemType>::makeNode(const ItemType& item)
+FixedString::~FixedString()
 {
-    Node* node = new Node;
-    node->data = item;
-    node->next = nullptr;
-    node->previous = nullptr;
-    return node;
+    std::cout << "Deconstructed string: " << buffer << std::endl;
+    delete[] buffer;
 }
 
-template <typename ItemType>
-void LinkedList<ItemType>::Add(const ItemType& item)
+void FixedString::append(const char* text)
 {
-    Node* node = makeNode(item);
-
-    if (head == nullptr)
+    int textLength = std::strlen(text);
+    if (length + textLength > maxSize)
     {
-        head = node;
-        tail = node;
+        throw std::overflow_error("String would exceed maximum size");
     }
-    else
-    {
-        tail->next = node;
-        node->previous = tail;
-        tail = node;
-    }
+    std::memcpy(buffer + length, text, textLength + 1);
+    length += textLength;
 }
 
-template <typename ItemType>
-void LinkedList<ItemType>::Remove(const ItemType& item)
+void FixedString::appendLine(const char* text)
 {
-    // TODO: Implement Remove function
+    append(text);
+    append("\n");
 }
 
-template <typename ItemType>
-uint64_t LinkedList<ItemType>::size()
+void FixedString::print()
 {
-    uint64_t count = 0;
-    Node* current = head;
-    while (current != nullptr)
-    {
-        count++;
-        current = current->next;
-    }
-    return count;
+    std::cout << buffer;
 }
 
-
-// node
-// count
-// AddRange
-// Add
-// Get
-// Set
-// Remove
-// Clear
-// IEnumeraotr?
+const char* FixedString::getString()
+{
+    return buffer;
+}

@@ -3,6 +3,28 @@
 
 using namespace std;
 
+
+struct Person;
+void FillInPeopleArray(vector<Person*>& people);
+void DisplayPeopleArrayNames(const vector<Person*>& people);
+
+int main()
+{
+    auto howMany{ 0 };
+    cout << "How many people would you like to create?" << endl;
+    cin >> howMany;
+
+    vector<Person*> PeopleArray(howMany);
+    FillInPeopleArray(PeopleArray);
+    DisplayPeopleArrayNames(PeopleArray);
+
+    for (size_t i = 0; i < PeopleArray.size(); ++i)
+    {
+        delete PeopleArray[i];
+    }
+    return 0;
+}
+
 struct Person
 {
     string personName;
@@ -30,20 +52,4 @@ void DisplayPeopleArrayNames(const vector<Person*>& people)
         }
     }
     cout << endl;
-}
-
-int main()
-{
-    auto howMany{ 0 };
-    cout << "How many people would you like to create?" << endl;
-    cin >> howMany;
-
-    vector<Person*> PeopleArray(howMany);
-    FillInPeopleArray(PeopleArray);
-    DisplayPeopleArrayNames(PeopleArray);
-
-    for (size_t i = 0; i < PeopleArray.size(); ++i)
-    {
-        delete PeopleArray[i];
-    }
 }
