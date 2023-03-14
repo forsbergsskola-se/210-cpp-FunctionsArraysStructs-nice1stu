@@ -12,7 +12,7 @@ namespace LinkedListTest
 		
 		TEST_METHOD(TestMethod1)
 		{
-			LinkedList linkedList;
+			LinkedList<int> linkedList;
 		}
 	};
 }
