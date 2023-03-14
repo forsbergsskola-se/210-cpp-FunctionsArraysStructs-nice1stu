@@ -25,13 +25,16 @@ private:
     Node<ItemType>* head;
     Node<ItemType>* tail;
 
-    Node<ItemType>* makeNode(const ItemType& item);
+    Node<ItemType>* makeNode(const ItemType &item);
 
 public:
 
-    void Add(const ItemType& item);
+    void Add(const ItemType &item);
+    void Remove(const ItemType &item); //TODO
 
-LinkedList();
+    uint64_t size();
+
+    LinkedList();
 
 };
 
@@ -43,7 +46,7 @@ LinkedList<ItemType>::LinkedList()
 
 //Add
 template <typename ItemType>
-void LinkedList::Add(const ItemType &item)
+void LinkedList<ItemType>::Add(const ItemType &item)
 {
     auto node = makeNode(item);
 
@@ -68,6 +71,13 @@ LinkedList<ItemType>::Node<ItemType> *LinkedList<ItemType>::makeNode(const ItemT
     node->next = nullptr;
     node->previous = nullptr;
     return node;
+}
+
+//count
+template <typename ItemType>
+uint64_t LinkedList<ItemType>::size()
+{
+    return 0;
 }
 
 
