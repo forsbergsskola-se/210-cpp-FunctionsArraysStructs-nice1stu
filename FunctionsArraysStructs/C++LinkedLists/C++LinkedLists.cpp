@@ -21,14 +21,56 @@ private:
 
         LLElement data;
     };
+
     Node<ItemType>* head;
+    Node<ItemType>* tail;
+
+    Node<ItemType>* makeNode(const ItemType& item);
+
+public:
+
+    void Add(const ItemType& item);
+
+LinkedList();
+
 };
 
 template <typename ItemType>
 LinkedList<ItemType>::LinkedList()
 {
-    LinkedList::head = nullptr;
+    head = nullptr;
 }
+
+//Add
+template <typename ItemType>
+void LinkedList::Add(const ItemType &item)
+{
+    auto node = makeNode(item);
+
+    if (this->head == nullptr || this->tail == nullptr)
+    {
+        head = node;
+        tail = node;
+    }
+    else
+    {
+        tail->next = node;
+        node->previous = tail;
+        tail = node;
+    }
+}
+
+template <typename ItemType>
+LinkedList<ItemType>::Node<ItemType> *LinkedList<ItemType>::makeNode(const ItemType &item)
+{
+    auto node = new Node();
+    node->data = item;
+    node->next = nullptr;
+    node->previous = nullptr;
+    return node;
+}
+
+
 template <typename ItemType>
 LinkedList<ItemType>::~LinkedList()
 {
