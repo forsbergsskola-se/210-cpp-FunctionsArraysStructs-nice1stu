@@ -14,12 +14,14 @@ public:
     StringClassExercise(size_t maxSize) : buffer(new char[maxSize]), length(0), maxSize(maxSize)
     {
         cout << "Constructing empty string\n";
+        cout << endl;
         buffer[0] = '\0';
     }
 
     StringClassExercise(const char* defaultText, size_t maxSize) : buffer(new char[maxSize]), length(strlen(defaultText)), maxSize(maxSize)
     {
         cout << "Constructing string with default text \"" << defaultText << "\"\n";
+        cout << endl;
 
         if (length >= maxSize) throw runtime_error("Default text is too long!");
 
@@ -29,6 +31,7 @@ public:
     ~StringClassExercise()
     {
         cout << "Destructing string \"" << buffer << "\"\n";
+        cout << endl;
         delete[] buffer;
     }
 
@@ -58,6 +61,7 @@ public:
     void print()
     {
         cout << "Current string: \"" << this->buffer << "\"\n";
+        cout << endl;
     }
 
     const char* getString() const
