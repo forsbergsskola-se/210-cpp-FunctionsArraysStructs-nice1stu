@@ -57,7 +57,6 @@ public:
         length += textLength;
     }
 
-
     void print()
     {
         cout << "Current string: \"" << this->buffer << "\"\n";
