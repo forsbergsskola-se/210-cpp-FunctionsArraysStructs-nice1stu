@@ -73,20 +73,20 @@ int main()
 {
     try
     {
-        StringClassExercise text1(20);
-        text1.append("Foo");
-        text1.appendLine("Bar");
+        StringClassExercise joinText(20);
+        joinText.append("Foo");
+        joinText.appendLine("Bar");
         cout << "text1: ";
-        text1.print();
+        joinText.print();
 
-        StringClassExercise text2("This is a long string", 25);
-        text2.append(" and this is more");
-        cout << "text2: " << text2.getString() << endl;
+        StringClassExercise defaultText("The quick brown fox", 25);
+        defaultText.append(" jumped over the lazy dog");
+        cout << "text2: " << defaultText.getString() << endl;
 
-        StringClassExercise text3(5);
-        text3.append("test");
-        text3.appendLine("longer text");
-        cout << "text3: " << text3.getString() << endl;
+        StringClassExercise tooLongText(5);
+        tooLongText.append("test");
+        tooLongText.appendLine("longer text");
+        cout << "text3: " << tooLongText.getString() << endl;
     }
 
     catch (const exception& e)
