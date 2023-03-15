@@ -1,31 +1,35 @@
 #include <iostream>
-#include <string>
+#include <cstring>
 
 using namespace std;
 
 class StringClassExercise
 {
 private:
-    size_t length; // use size_t instead of int
-    string buffer; // use string instead of char*
-    size_t maxSize; // use size_t instead of int
+    size_t length;
+    char* buffer;
+    size_t maxSize;
 
 public:
-    StringClassExercise(size_t maxSize) : buffer(""), length(0), maxSize(maxSize)
+    StringClassExercise(size_t maxSize) : buffer(new char[maxSize]), length(0), maxSize(maxSize)
     {
         cout << "Constructing empty string\n";
+        buffer[0] = '\0';
     }
 
-    StringClassExercise(const char* defaultText, size_t maxSize) : buffer(defaultText), length(buffer.size()), maxSize(maxSize)
+    StringClassExercise(const char* defaultText, size_t maxSize) : buffer(new char[maxSize]), length(strlen(defaultText)), maxSize(maxSize)
     {
         cout << "Constructing string with default text \"" << defaultText << "\"\n";
 
         if (length >= maxSize) throw runtime_error("Default text is too long!");
+
+        strcpy_s(buffer, maxSize, defaultText);
     }
 
     ~StringClassExercise()
     {
         cout << "Destructing string \"" << buffer << "\"\n";
+        delete[] buffer;
     }
 
     void append(const char* text)
@@ -34,17 +38,22 @@ public:
 
         if (length + textLength >= maxSize) throw runtime_error("String would exceed max size!");
 
-        buffer.append(text, textLength);
+        strcat_s(buffer, maxSize, text);
         length += textLength;
     }
 
-    void appendLine(const string& text)
+    void appendLine(const char* text)
     {
-        if (length + text.length() >= maxSize) throw runtime_error("String would exceed max size!");
+        size_t textLength = strlen(text);
 
-        buffer.append(text);
-        length += text.length();
+        if (length + textLength >= maxSize) throw runtime_error("String would exceed max size!");
+
+        strcat_s(buffer, maxSize, text);
+        strcat_s(buffer, maxSize, "");
+
+        length += textLength;
     }
+
 
     void print()
     {
@@ -53,7 +62,7 @@ public:
 
     const char* getString() const
     {
-        return this->buffer.data();
+        return this->buffer;
     }
 };
 
