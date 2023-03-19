@@ -64,5 +64,10 @@ namespace LinkedListTest
             list.MultiAdd(items);
             Assert::AreEqual(list.Count(), 8u, L"Size of list should be 8", LINE_INFO());
         }
+
+        TEST_METHOD(TestGetItemFromCorrectIndex)
+        {
+            Assert::AreEqual(list.Get(2), 100, L"Item at index 1 should be 100", LINE_INFO());
+        }
     };
 }
