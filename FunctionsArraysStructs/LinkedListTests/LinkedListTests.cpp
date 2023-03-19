@@ -75,5 +75,11 @@ namespace LinkedListTest
             list.Set(3, 999);
             Assert::AreEqual(list.Get(3), 999, L"Item at index 3 should be 999", LINE_INFO());
         }
+
+        TEST_METHOD(TestCountIsZeroAfterClear)
+        {
+            list.Clear();
+            Assert::AreEqual(list.Count(), 0u, L"Size of list should be 0", LINE_INFO());
+        }
     };
 }
