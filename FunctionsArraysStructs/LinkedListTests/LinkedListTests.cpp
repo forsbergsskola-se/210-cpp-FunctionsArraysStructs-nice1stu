@@ -48,6 +48,24 @@ namespace LinkedListTest
             Assert::AreEqual(list.Get(1), 2, L"Item at index 1 should be 2", LINE_INFO());
         }
 
+        TEST_METHOD(TestSetIteminCorrectIndex)
+        {
+            LinkedList<int> list;
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.Set(1, 4);
+            Assert::AreEqual(list.Get(1), 4, L"Item at index 1 should be 4", LINE_INFO());
+        }
 
+        TEST_METHOD(TestSetIteminCorrectIndex)
+        {
+            LinkedList<int> list;
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.Set(1, 4);
+            Assert::AreEqual(list.Get(1), 4, L"Item at index 1 should be 4", LINE_INFO());
+        }
     };
 }
