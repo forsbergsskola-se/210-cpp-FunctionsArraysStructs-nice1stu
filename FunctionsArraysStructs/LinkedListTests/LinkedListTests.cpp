@@ -69,5 +69,11 @@ namespace LinkedListTest
         {
             Assert::AreEqual(list.Get(2), 100, L"Item at index 1 should be 100", LINE_INFO());
         }
+
+        TEST_METHOD(TestSetIteminCorrectIndex)
+        {
+            list.Set(3, 999);
+            Assert::AreEqual(list.Get(3), 999, L"Item at index 3 should be 999", LINE_INFO());
+        }
     };
 }
