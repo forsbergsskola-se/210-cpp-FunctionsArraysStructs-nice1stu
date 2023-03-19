@@ -21,13 +21,17 @@ namespace LinkedListTest
         LinkedList<int> list;
 
     public:
-        void SetUpStdList(SetUp)
+        void SetUpStdList()
         {
             list.Add(1);
             list.Add(2);
             list.Add(3);
         }
 
+        void ClearStdList()
+        {
+            list.Clear();
+        }
 
         TEST_METHOD(TestAddOne)
         {
