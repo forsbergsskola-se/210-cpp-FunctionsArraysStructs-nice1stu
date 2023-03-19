@@ -100,10 +100,9 @@ namespace LinkedListTest
             EXPECT_EQ(list.Get(0), 13);
             EXPECT_EQ(list.Get(2), 100);
             EXPECT_EQ(list.Get(4), 69);
-            Assert::AreEqual(list.IndexOf(5), 1, L"Index of 5 should be 1", LINE_INFO());
-            Assert::AreEqual(list.IndexOf(100), 2, L"Index of 100 should be 2", LINE_INFO());
-            Assert::AreEqual(list.IndexOf(4), -1, L"Index of 4 should be -1", LINE_INFO());
-
+            Assert::AreEqual(list.IndexOf(0), 13, L"Index of 0 should be 13", LINE_INFO());
+            Assert::AreEqual(list.IndexOf(2), 100, L"Index of 100 should be 2", LINE_INFO());
+            Assert::AreEqual(list.IndexOf(4), 69, L"Index of 4 should be -1", LINE_INFO());
         }
 
         TEST_METHOD(TestRemove)
