@@ -17,17 +17,28 @@ namespace LinkedListTest
 {
     TEST_CLASS(UnitTestLinkedList)
     {
+    private:
+        LinkedList<int> list;
+
     public:
+        void SetUpStdList(SetUp)
+        {
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+        }
+
+
         TEST_METHOD(TestAddOne)
         {
-            LinkedList<int> list;
-            list.Add(1);
-            Assert::AreEqual(list.Count(), 1u, L"Size of list should be 1", LINE_INFO());
+            Assert::AreEqual(list.Count(), 3u, L"Size of list should be 3", LINE_INFO());
+            list.Add(4);
+            Assert::AreEqual(list.Count(), 4u, L"Size of list should be 4", LINE_INFO());
         }
 
         TEST_METHOD(TestEmptyList)
         {
-            LinkedList<int> list;
+            list.Clear();
             Assert::AreEqual(list.Count(), 0u, L"Size of list should be 0", LINE_INFO());
         }
 
