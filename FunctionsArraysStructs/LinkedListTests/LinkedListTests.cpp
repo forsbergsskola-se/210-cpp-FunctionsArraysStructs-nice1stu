@@ -23,14 +23,26 @@ namespace LinkedListTest
     public:
         void SetUpStdList()
         {
-            list.Add(1);
-            list.Add(2);
-            list.Add(3);
+            list.Add(13);
+            list.Add(5);
+            list.Add(100);
+            list.Add(101);
+            list.Add(69);
         }
 
         void ClearStdList()
         {
             list.Clear();
+        }
+
+        TEST_METHOD_INITIALIZE(SetUp)
+        {
+            SetUpStdList();
+        }
+
+        TEST_METHOD_CLEANUP(TearDown)
+        {
+            ClearStdList();
         }
 
         TEST_METHOD(TestAddOne)
