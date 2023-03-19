@@ -47,9 +47,9 @@ namespace LinkedListTest
 
         TEST_METHOD(TestAddOne)
         {
-            Assert::AreEqual(list.Count(), 3u, L"Size of list should be 3", LINE_INFO());
+            Assert::AreEqual(list.Count(), 5u, L"Size of list should be 5", LINE_INFO());
             list.Add(4);
-            Assert::AreEqual(list.Count(), 4u, L"Size of list should be 4", LINE_INFO());
+            Assert::AreEqual(list.Count(), 6u, L"Size of list should be 6", LINE_INFO());
         }
 
         TEST_METHOD(TestEmptyList)
