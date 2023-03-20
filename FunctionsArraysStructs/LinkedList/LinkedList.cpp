@@ -158,6 +158,14 @@ uint32_t LinkedList<ItemType>::Count() const
 }
 
 template <typename ItemType>
+ItemType IndexOf(const ItemType& item)
+{
+    auto it = find(data_.begin(), data_.end(), item);
+
+    if (it != data_.end()) return distance(data_.begin(), it);
+    
+    else return -1;
+}
 
 
 // node
@@ -169,4 +177,4 @@ template <typename ItemType>
 // Remove
 // Clear
 // Contains
-// Indexof
+// Indexof (Find in c++)
