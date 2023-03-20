@@ -84,7 +84,7 @@ int main()
         cout << "text2: " << defaultText.getString() << endl;
 
         StringClassExercise tooLongText(5);
-        tooLongText.append("test");
+        tooLongText.append(">How much wood");
         tooLongText.appendLine("longer text");
         cout << "text3: " << tooLongText.getString() << endl;
     }

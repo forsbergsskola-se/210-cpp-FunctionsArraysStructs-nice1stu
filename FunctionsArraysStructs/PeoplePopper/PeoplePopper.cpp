@@ -20,7 +20,7 @@ int main()
 
     for (size_t i = 0; i < PeopleArray.size(); ++i)
     {
-        delete PeopleArray[i];
+        delete[] PeopleArray[i];
     }
     return 0;
 }
