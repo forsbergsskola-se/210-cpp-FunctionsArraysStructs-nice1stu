@@ -15,7 +15,7 @@ public:
     void MultiAdd(const vector<ItemType>& items);
     ItemType Get(uint32_t index) const;
     void Set(uint32_t index, const ItemType& item);
-    void Remove(const ItemType& item);
+    ItemType Remove(const ItemType& item);
     void Clear();
     uint32_t Count() const;
 
@@ -108,7 +108,7 @@ void LinkedList<ItemType>::Set(uint32_t index, const ItemType& item)
 }
 
 template <typename ItemType>
-void LinkedList<ItemType>::Remove(const ItemType& item)
+ItemType LinkedList<ItemType>::Remove(const ItemType& item)
 {
     Node* current = firstNode;
     while (current != nullptr && current->data != item)
@@ -125,6 +125,8 @@ void LinkedList<ItemType>::Remove(const ItemType& item)
     
     if (current->next != nullptr) current->next->previous = current->previous;
     
+    return = null;
+
     delete current;
 }
 
@@ -155,6 +157,8 @@ uint32_t LinkedList<ItemType>::Count() const
     return count;
 }
 
+template <typename ItemType>
+
 
 // node
 // count
@@ -164,4 +168,5 @@ uint32_t LinkedList<ItemType>::Count() const
 // Set
 // Remove
 // Clear
-// IEnumeraotr?
+// Contains
+// Indexof
