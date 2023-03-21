@@ -19,6 +19,8 @@ public:
     void Clear();
     uint32_t Count() const;
     bool Contains(const ItemType& item) const;
+    uint32_t IndexOf(const ItemType& item) const; // declaration of IndexOf function
+    
 
 private:
     struct Node
@@ -116,20 +118,21 @@ ItemType LinkedList<ItemType>::Remove(const ItemType& item)
     {
         current = current->next;
     }
-    if (current == nullptr) return;
-    
+    if (current == nullptr) return 0;
+
     if (current == firstNode) firstNode = current->next;
-    
+
     if (current == lastNode) lastNode = current->previous;
-    
+
     if (current->previous != nullptr) current->previous->next = current->next;
-    
+
     if (current->next != nullptr) current->next->previous = current->previous;
-    
-    return = null;
 
     delete current;
+    return 1;
 }
+
+
 
 template <typename ItemType>
 void LinkedList<ItemType>::Clear()
@@ -159,14 +162,20 @@ uint32_t LinkedList<ItemType>::Count() const
 }
 
 template <typename ItemType>
-ItemType IndexOf(const ItemType& item)
-{
-    auto it = find(data_.begin(), data_.end(), item);
+uint32_t LinkedList<ItemType>::IndexOf(const ItemType& item) const
 
-    if (it != data_.end()) return distance(data_.begin(), it);
-    
-    else return -1;
+{
+    Node* current = firstNode;
+    int index = 0;
+    while (current != nullptr)
+    {
+        if (current->data == item) return index;
+        current = current->next;
+        ++index;
+    }
+    return -1;
 }
+
 
 template <typename ItemType>
 bool LinkedList<ItemType>::Contains(const ItemType& item) const

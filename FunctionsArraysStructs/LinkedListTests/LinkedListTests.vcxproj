@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
-    <ProjectGuid>{CB786991-D388-40BA-875C-B794B76583AD}</ProjectGuid>
+    <ProjectGuid>{6A0CB66F-A3A6-450A-BB48-82F3A8516CCB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>LinkedListTests</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
@@ -166,6 +166,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LinkedList\LinkedList.vcxproj">
+      <Project>{c39cb995-359c-43b3-a2ca-74a6f86a016b}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

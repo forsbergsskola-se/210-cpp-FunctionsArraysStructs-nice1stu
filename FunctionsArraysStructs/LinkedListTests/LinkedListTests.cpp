@@ -98,16 +98,11 @@ namespace LinkedListTest
 
         TEST_METHOD(TestIndexOf)
         {
-            std::vector<int> list = { 1, 2, 3, 4, 5 };
-            auto it = std::find(list.begin(), list.end(), 0);
-            Assert::AreEqual(distance(list.begin(), it), 13, L"Index of 0 should be 13", LINE_INFO());
-
-            it = std::find(list.begin(), list.end(), 2);
-            Assert::AreEqual(distance(list.begin(), it), 100, L"Index of 100 should be 2", LINE_INFO());
-
-            it = std::find(list.begin(), list.end(), 4);
-            Assert::AreEqual(distance(list.begin(), it), -1, L"Index of 4 should be -1", LINE_INFO());
+            Assert::AreEqual(list.IndexOf(0), 13u, L"Index of 0 should be 13", LINE_INFO());
+            Assert::AreEqual(list.IndexOf(2), 2u, L"Index of 2 should be 2", LINE_INFO());
+            Assert::AreEqual(list.IndexOf(4), 4u, L"Index of 4 should be -1", LINE_INFO());
         }
+
 
         TEST_METHOD(TestRemove)
         {
