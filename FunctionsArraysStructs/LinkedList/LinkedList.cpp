@@ -18,6 +18,7 @@ public:
     ItemType Remove(const ItemType& item);
     void Clear();
     uint32_t Count() const;
+    bool Contains(const ItemType& item) const;
 
 private:
     struct Node
@@ -167,6 +168,18 @@ ItemType IndexOf(const ItemType& item)
     else return -1;
 }
 
+template <typename ItemType>
+bool LinkedList<ItemType>::Contains(const ItemType& item) const
+{
+    Node* current = firstNode;
+    while (current != nullptr)
+    {
+        if (current->data == item) return true;
+
+        current = current->next;
+    }
+    return false;
+}
 
 // node
 // count
