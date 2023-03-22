@@ -10,7 +10,7 @@ char board[BOARD_SIZE];
 
 void initBoard()
 {
-    std::fill(std::begin(board), std::end(board), '-');
+    fill(begin(board), end(board), '-');
 }
 
 void printBoard()
@@ -39,29 +39,28 @@ bool checkWin(int position, char symbol)
     int col = position % 3;
     bool isDiagonal = (row == col) || (row + col == 2);
 
-    if (row >= 0 && row <= 2 && board[row * 3] == symbol && board[row * 3 + 1] == symbol && board[row * 3 + 2] == symbol) return true;
+    bool rowWin = board[row * 3] == symbol && board[row * 3 + 1] == symbol && board[row * 3 + 2] == symbol;
+    bool colWin = board[col] == symbol && board[col + 3] == symbol && board[col + 6] == symbol;
+    bool diagWin = (board[0] == symbol && board[4] == symbol && board[8] == symbol) || (board[2] == symbol && board[4] == symbol && board[6] == symbol);
 
-    if (board[col] == symbol && board[col + 3] == symbol && board[col + 6] == symbol) return true;
-
-    if ((board[0] == symbol && board[4] == symbol && board[8] == symbol) || (board[2] == symbol && board[4] == symbol && board[6] == symbol)) return true;
-    
-    return false;
+    return rowWin || colWin || diagWin;
 }
-
 
 int getPlayerMove(char symbol)
 {
     int position;
-    do
+    while (true)
     {
         cout << "Enter a position (1-9): ";
         cin >> position;
-        --position;
-        cout << "Position after subtraction: " << position << endl;
-    } while (!isValidMove(position));
-    board[position] = symbol;
-    cout << "Cell " << ++position << " now contains " << board[position] << endl;
-    return ++position;
+        position--;
+        if (isValidMove(position)) break;
+        cout << "Invalid move, please try again." << endl;
+    }
+    ++position;
+    board[position - 1] = symbol;
+    cout << "Cell " << position << " now contains " << symbol << endl;
+    return position;
 }
 
 int main()
@@ -140,7 +139,6 @@ int main()
                     }
                 }
             }
-
             if (!hasMoved)
             {
                 do
