@@ -8,25 +8,38 @@ using namespace std;
 const int BOARD_SIZE = 9;
 char board[BOARD_SIZE];
 
-void initBoard()
-{
-    fill(begin(board), end(board), '-');
+enum class BoardValue {
+    Empty = '-',
+    Player1 = 'X',
+    Player2 = 'O',
+};
+
+void initBoard() {
+    fill(begin(board), end(board), static_cast<char>(BoardValue::Empty));
 }
 
-void printBoard()
-{
-    cout << " " << (board[0] == '-' ? "\033[31m7\033[0m" : string(1, board[0])) << " | "
-        << (board[1] == '-' ? "\033[31m8\033[0m" : string(1, board[1])) << " | "
-        << (board[2] == '-' ? "\033[31m9\033[0m" : string(1, board[2])) << " " << endl;
+void printBoard() {
+    auto printCell = [](BoardValue value) {
+        switch (value) {
+        case BoardValue::Empty: return "\033[31m-\033[0m";
+        case BoardValue::Player1: return "X";
+        case BoardValue::Player2: return "O";
+        }
+    };
+
+    cout << " " << printCell(static_cast<BoardValue>(board[0])) << " | "
+        << printCell(static_cast<BoardValue>(board[1])) << " | "
+        << printCell(static_cast<BoardValue>(board[2])) << " " << endl;
     cout << " - + - + -" << endl;
-    cout << " " << (board[3] == '-' ? "\033[31m4\033[0m" : string(1, board[3])) << " | "
-        << (board[4] == '-' ? "\033[31m5\033[0m" : string(1, board[4])) << " | "
-        << (board[5] == '-' ? "\033[31m6\033[0m" : string(1, board[5])) << " " << endl;
+    cout << " " << printCell(static_cast<BoardValue>(board[3])) << " | "
+        << printCell(static_cast<BoardValue>(board[4])) << " | "
+        << printCell(static_cast<BoardValue>(board[5])) << " " << endl;
     cout << " - + - + -" << endl;
-    cout << " " << (board[6] == '-' ? "\033[31m1\033[0m" : string(1, board[6])) << " | "
-        << (board[7] == '-' ? "\033[31m2\033[0m" : string(1, board[7])) << " | "
-        << (board[8] == '-' ? "\033[31m3\033[0m" : string(1, board[8])) << " " << endl;
+    cout << " " << printCell(static_cast<BoardValue>(board[6])) << " | "
+        << printCell(static_cast<BoardValue>(board[7])) << " | "
+        << printCell(static_cast<BoardValue>(board[8])) << " " << endl;
 }
+
 
 bool isValidMove(int position)
 {
