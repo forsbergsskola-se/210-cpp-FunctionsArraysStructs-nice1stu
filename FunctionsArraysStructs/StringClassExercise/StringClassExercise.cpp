@@ -14,24 +14,35 @@ public:
     StringClassExercise(size_t maxSize) : buffer(new char[maxSize]), length(0), maxSize(maxSize)
     {
         cout << "Constructing empty string\n";
-        cout << endl;
         buffer[0] = '\0';
     }
 
     StringClassExercise(const char* defaultText, size_t maxSize) : buffer(new char[maxSize]), length(strlen(defaultText)), maxSize(maxSize)
     {
         cout << "Constructing string with default text \"" << defaultText << "\"\n";
-        cout << endl;
 
         if (length >= maxSize) throw runtime_error("Default text is too long!");
 
         strcpy_s(buffer, maxSize, defaultText);
     }
 
+    StringClassExercise(const StringClassExercise& other) : buffer(new char[other.maxSize]), length(other.length), maxSize(other.maxSize)
+    {
+        cout << "Constructing string by copy\n";
+        strcpy_s(buffer, maxSize, other.buffer);
+    }
+
+    StringClassExercise(StringClassExercise&& other) noexcept : buffer(other.buffer), length(other.length), maxSize(other.maxSize)
+    {
+        cout << "Constructing string by move\n";
+        other.buffer = nullptr;
+        other.length = 0;
+        other.maxSize = 0;
+    }
+
     ~StringClassExercise()
     {
         cout << "Destructing string \"" << buffer << "\"\n";
-        cout << endl;
         delete[] buffer;
     }
 
@@ -60,7 +71,6 @@ public:
     void print()
     {
         cout << "Current string: \"" << this->buffer << "\"\n";
-        cout << endl;
     }
 
     const char* getString() const
@@ -68,6 +78,7 @@ public:
         return this->buffer;
     }
 };
+
 
 int main()
 {
@@ -87,12 +98,16 @@ int main()
         tooLongText.append(">How much wood");
         tooLongText.appendLine("longer text");
         cout << "text3: " << tooLongText.getString() << endl;
-    }
 
+        StringClassExercise copiedText = defaultText;
+        cout << "text4: " << copiedText.getString() << endl;
+
+        StringClassExercise movedText = std::move(defaultText);
+        cout << "text5: " << movedText.getString() << endl;
+    }
     catch (const exception& e)
     {
         cerr << "Error: " << e.what() << endl;
     }
-
     return 0;
 }
