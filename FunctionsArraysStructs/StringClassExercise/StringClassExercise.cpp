@@ -22,22 +22,14 @@ public:
         delete[] data;
     }
 
-    void add(T element)
+    void add(const T& element)
     {
-        if (size == maxSize)
-        {
-            throw runtime_error("Array is full!");
-        }
-        data[size++] = element;
+        size == maxSize ? throw runtime_error("Array is full!") : data[size++] = element;
     }
 
-    T get(size_t index) const
+    const T& get(size_t index) const
     {
-        if (index >= size)
-        {
-            throw out_of_range("Index out of range!");
-        }
-        return data[index];
+        return (index >= size) ? throw out_of_range("Index out of range!") : data[index];
     }
 
     size_t getSize() const
@@ -69,12 +61,7 @@ public:
     StringClassExercise(const char* defaultText, size_t maxSize) : buffer(new char[maxSize]), length(strlen(defaultText)), maxSize(maxSize)
     {
         cout << "Constructing string with default text \"" << defaultText << "\"\n";
-
-        if (length >= maxSize)
-        {
-            throw runtime_error("Default text is too long!");
-        }
-
+        length >= maxSize ? throw runtime_error("Default text is too long!") : void();
         strcpy_s(buffer, maxSize, defaultText);
     }
 
@@ -133,31 +120,18 @@ public:
 
     void append(const char* text)
     {
-        size_t textLength = strlen(text);
-
-        if (length + textLength >= maxSize)
-        {
-            throw runtime_error("String would exceed max size!");
-        }
-
+        length + strlen(text) >= maxSize ? throw runtime_error("String would exceed max size!") : void();
         strcat_s(buffer, maxSize, text);
-        length += textLength;
+        length += strlen(text);
     }
 
 
     void appendLine(const char* text)
     {
-        size_t textLength = strlen(text);
-
-        if (length + textLength >= maxSize)
-        {
-            throw runtime_error("String would exceed max size!");
-        }
-
+        length + strlen(text) >= maxSize ? throw runtime_error("String would exceed max size!") : void();
         strcat_s(buffer, maxSize, text);
         strcat_s(buffer, maxSize, "\n");
-
-        length += textLength + 1;
+        length += strlen(text) + 1;
     }
 
     void print()
